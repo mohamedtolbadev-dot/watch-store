@@ -162,6 +162,32 @@ details[open] .chev { transform: rotate(45deg); }
 ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== MOBILE RESPONSIVE ===== */
+html { -webkit-text-size-adjust: 100%; }
+img, video, svg { max-width: 100%; }
+#ckModal > div { max-height: 92vh; max-height: 92dvh; }
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px !important; } /* prevents iOS zoom on focus */
+  button, a.btn, .btn { min-height: 44px; }
+  #drawer { max-width: 100%; }
+  #ckModal > div { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  #ckModal button[onclick="sendOrder()"] { position: sticky; bottom: 0; box-shadow: 0 -8px 16px rgba(255,255,255,.95); }
+  #mbar, #productView > div.md\:hidden { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); }
+  #toast { width: max-content; max-width: 90vw; text-align: center; }
+  h2.section-title { font-size: 1.5rem; }
+  .step-card { padding: 28px 20px; }
+  .pack-card, .watch-card { border-radius: 14px; }
+  .hnav { width: 36px; height: 36px; }
+  .f2 { grid-template-columns: 1fr !important; }
+  #orderForm { padding: 20px !important; }
+}
+@media (max-width: 380px) {
+  h1.font-display { font-size: 1.9rem !important; }
+  #watchGrid { gap: 10px; }
+  .btn-primary, .btn-gold, .btn-outline { padding: 12px 18px; }
+}
 </style>
 </head>
 <body class="font-sans text-ink bg-[#F8F9FA] antialiased pb-20 md:pb-0">
@@ -455,16 +481,8 @@ details[open] .chev { transform: rotate(45deg); }
       <span class="text-gray-500 font-medium text-sm">المجموع الإجمالي:</span>
       <b id="cartTotal" class="font-display text-2xl text-[#111827]">0 درهم</b>
     </div>
-    <div class="space-y-3">
-      <input id="fName" placeholder="الاسم الكامل" autocomplete="name" class="w-full px-4 py-3 text-sm">
-      <div class="grid grid-cols-2 gap-3">
-        <input id="fCity" placeholder="المدينة" class="px-4 py-3 text-sm">
-        <input id="fPhone" type="tel" placeholder="رقم الهاتف" autocomplete="tel" class="px-4 py-3 text-sm" dir="ltr" style="text-align:right">
-      </div>
-    </div>
-    <p id="fErr" class="text-xs text-red-500 hidden font-medium">المرجو إدخال الاسم، المدينة ورقم الهاتف.</p>
-    <button onclick="sendOrder()" class="btn w-full bg-[#111827] text-white font-bold py-3.5 text-base hover:bg-[#1F2937] rounded-xl flex items-center justify-center gap-2">
-      <span id="waIc"></span> تأكيد الطلب عبر واتساب
+    <button onclick="openCheckout()" class="btn w-full bg-[#111827] text-white font-bold py-3.5 text-base hover:bg-[#1F2937] rounded-xl flex items-center justify-center gap-2">
+      إتمام الطلب
     </button>
     <p class="text-xs text-gray-400 text-center flex items-center justify-center gap-1">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -472,6 +490,48 @@ details[open] .chev { transform: rotate(45deg); }
     </p>
   </div>
 </aside>
+
+<div id="ckModal" class="fixed inset-0 z-[60] hidden items-end md:items-center justify-center bg-black/50 backdrop-blur-sm p-0 md:p-4" onclick="if(event.target===this)closeCheckout()">
+  <div class="bg-white w-full max-w-md max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-2xl shadow-2xl" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
+    <div class="flex items-center justify-between px-6 h-[64px] border-b border-gray-100 sticky top-0 bg-white z-10">
+      <h3 class="font-display text-xl text-[#111827] font-bold">إتمام الطلب</h3>
+      <button onclick="closeCheckout()" class="w-9 h-9 grid place-items-center bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-600" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="p-6 space-y-5">
+      <div class="bg-[#F8F9FA] border border-gray-100 rounded-xl p-4">
+        <div id="ckSummary" class="space-y-1.5 text-sm text-gray-700"></div>
+        <div class="flex items-baseline justify-between mt-3 pt-3 border-t border-gray-200">
+          <span class="text-gray-500 text-sm font-medium">المجموع (التوصيل مجاني):</span>
+          <b id="ckTotal" class="font-display text-xl text-[#111827]">0 درهم</b>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fName">الاسم الكامل</label>
+          <input id="fName" placeholder="أدخل اسمك الكامل" autocomplete="name" class="w-full px-4 py-3 text-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fPhone">رقم الهاتف</label>
+          <input id="fPhone" type="tel" placeholder="06..." autocomplete="tel" class="w-full px-4 py-3 text-sm" dir="ltr" style="text-align:right">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fCity">المدينة</label>
+          <input id="fCity" placeholder="مدينتك" autocomplete="address-level2" class="w-full px-4 py-3 text-sm">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fAddress">العنوان</label>
+          <textarea id="fAddress" rows="2" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="w-full px-4 py-3 text-sm resize-none"></textarea>
+        </div>
+      </div>
+      <p id="fErr" class="text-sm text-red-500 hidden font-medium">المرجو ملء جميع الحقول: الاسم، الهاتف، المدينة والعنوان.</p>
+      <button onclick="sendOrder()" class="btn w-full bg-[#111827] text-white font-bold py-3.5 text-base hover:bg-[#1F2937] rounded-xl flex items-center justify-center gap-2">
+        <span id="waIc"></span> تأكيد الطلب عبر واتساب
+      </button>
+      <p class="text-xs text-gray-400 text-center">معلوماتك آمنة. التوصيل مجاني والدفع عند الاستلام.</p>
+    </div>
+  </div>
+</div>
+
 
 <div id="toast" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-sm px-5 py-3 rounded-xl shadow-xl z-50 hidden font-medium"></div>
 
@@ -770,14 +830,30 @@ function toast(m){
   clearTimeout(window._t); window._t=setTimeout(()=>t.classList.add('hidden'),2500);
 }
 
-function sendOrder(){
-  const name=fName.value.trim(),city=fCity.value.trim(),phone=fPhone.value.trim(),err=document.getElementById('fErr');
+function openCheckout(){
   if(!cart.length){toast('سلة المشتريات فارغة');return}
-  if(!name||!city||!phone){err.classList.remove('hidden');return}
+  const t=totals();
+  document.getElementById('ckSummary').innerHTML=cart.map(c=>`<div class="flex justify-between gap-3"><span>${c.name}${c.label?' ('+c.label+')':''}</span><b>× ${c.qty}</b></div>`).join('');
+  document.getElementById('ckTotal').textContent=dh(t.total);
+  document.getElementById('fErr').classList.add('hidden');
+  toggleCart(false);
+  const m=document.getElementById('ckModal'); m.classList.remove('hidden'); m.classList.add('flex');
+  document.body.style.overflow='hidden';
+}
+function closeCheckout(){
+  const m=document.getElementById('ckModal'); m.classList.add('hidden'); m.classList.remove('flex');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCheckout()});
+
+function sendOrder(){
+  const name=fName.value.trim(),phone=fPhone.value.trim(),city=fCity.value.trim(),address=fAddress.value.trim(),err=document.getElementById('fErr');
+  if(!cart.length){toast('سلة المشتريات فارغة');return}
+  if(!name||!phone||!city||!address){err.classList.remove('hidden');return}
   err.classList.add('hidden');
   const t=totals();
   const lines=cart.map(c=>`• ${c.name}${c.label?' ('+c.label+')':''} × ${c.qty}`).join('\n');
-  const msg=`*طلب جديد من دار الوقت*\n\n${lines}\n\n*المجموع الإجمالي: ${t.total} درهم*\n_(التوصيل مجاني)_\n\n*الاسم:* ${name}\n*المدينة:* ${city}\n*الهاتف:* ${phone}`;
+  const msg=`*طلب جديد من دار الوقت*\n\n${lines}\n\n*المجموع الإجمالي: ${t.total} درهم*\n_(التوصيل مجاني)_\n\n*الاسم:* ${name}\n*الهاتف:* ${phone}\n*المدينة:* ${city}\n*العنوان:* ${address}`;
   track(CONVERSION_EVENT,{value:t.total,currency:'MAD'});
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
 }
@@ -793,7 +869,7 @@ function route(){
     if(location.hash.length>1&&!m) setTimeout(()=>{const e=document.querySelector(location.hash); e&&e.scrollIntoView()},0);
     return;
   }
-  pv={type:m[1],id:m[2],qty:1,second:m[2],cur:null,f:{name:'',city:'',phone:''}};
+  pv={type:m[1],id:m[2],qty:1,second:m[2],cur:null,f:{name:'',city:'',phone:'',address:''}};
   home.classList.add('hidden'); view.classList.remove('hidden'); window.scrollTo(0,0);
   document.title=item.name+' — دار الوقت';
   renderProduct(); renderCart();
@@ -868,7 +944,7 @@ function renderProduct(){
                 <label class="block text-sm font-bold text-brand mb-1.5" for="pvName">الاسم الكامل</label>
                 <input id="pvName" value="${pv.f.name}" oninput="pv.f.name=this.value" placeholder="أدخل اسمك الكامل" autocomplete="name" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow">
               </div>
-              <div class="grid grid-cols-2 gap-4">
+              <div class="f2 grid grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-bold text-brand mb-1.5" for="pvCity">المدينة</label>
                   <input id="pvCity" value="${pv.f.city}" oninput="pv.f.city=this.value" placeholder="مدينتك" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow">
@@ -877,6 +953,10 @@ function renderProduct(){
                   <label class="block text-sm font-bold text-brand mb-1.5" for="pvPhone">رقم الهاتف</label>
                   <input id="pvPhone" type="tel" value="${pv.f.phone}" oninput="pv.f.phone=this.value" placeholder="06..." autocomplete="tel" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow" dir="ltr" style="text-align: right;">
                 </div>
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-brand mb-1.5" for="pvAddress">العنوان</label>
+                <textarea id="pvAddress" rows="2" oninput="pv.f.address=this.value" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="w-full bg-tint px-4 py-3.5 text-base resize-none">${pv.f.address}</textarea>
               </div>
             </div>
             
@@ -916,11 +996,11 @@ function addProductToCart(){
 
 function orderNow(){
   if(pv.type==='pack'&&!packReady(PACKS.find(x=>x.id===pv.id))) return;
-  const {name,city,phone}=pv.f,err=document.getElementById('pvErr');
-  if(!name.trim()||!city.trim()||!phone.trim()){err.classList.remove('hidden');return}
+  const {name,city,phone,address}=pv.f,err=document.getElementById('pvErr');
+  if(!name.trim()||!city.trim()||!phone.trim()||!address.trim()){err.classList.remove('hidden');return}
   err.classList.add('hidden');
   const total=pvTotal();
-  const msg=`*طلب سريع من دار الوقت*\n\n${pvLines()}\n\n*المجموع:* ${total} درهم (التوصيل مجاني)\n\n*الاسم:* ${name.trim()}\n*المدينة:* ${city.trim()}\n*الهاتف:* ${phone.trim()}`;
+  const msg=`*طلب سريع من دار الوقت*\n\n${pvLines()}\n\n*المجموع:* ${total} درهم (التوصيل مجاني)\n\n*الاسم:* ${name.trim()}\n*الهاتف:* ${phone.trim()}\n*المدينة:* ${city.trim()}\n*العنوان:* ${address.trim()}`;
   track(CONVERSION_EVENT,{content_name:pvLines().replace('• ',''),value:total,currency:'MAD'});
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
 }
