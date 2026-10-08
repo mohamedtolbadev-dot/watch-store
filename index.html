@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#5177AE">
+<meta name="theme-color" content="#0E0F12">
+<meta name="color-scheme" content="dark">
 <title>دار الوقت — ساعات وعطور</title>
 
 <script>
@@ -23,11 +24,11 @@ tailwind.config={
   theme:{
     extend:{
       colors:{
-        ink:'#2B2B2B',
-        paper:'#FFFFFF',
-        mist:'#F5F5F5',
-        line:'#E3E3E3',
-        muted:'#6B6B6B'
+        ink:'#EDEEF0',
+        paper:'#0E0F12',
+        mist:'#17181C',
+        line:'#2A2C33',
+        muted:'#9A9DA6'
       },
       fontFamily:{
         sans:['Readex Pro','IBM Plex Sans Arabic','Segoe UI','Tahoma','sans-serif']
@@ -583,6 +584,81 @@ body{font-weight:400}
 #packs{border-top:1px solid var(--line)}
 .pk{border-top-color:var(--line)}
 .faq-item[open]{background:#fff}
+
+/* ===== DARK MODE (final layer) ===== */
+:root{color-scheme:dark;--ink:#EDEEF0;--paper:#0E0F12;--mist:#17181C;--tint:#17181C;--line:#2A2C33;--muted:#9A9DA6;--emerald-t:#8EADDD;--photo:#F1F2F4}
+html,body{background:var(--paper);color:var(--ink)}
+::-webkit-scrollbar-thumb{background:#3A3D46}
+/* accent text on dark: lighter tint of the same blue */
+.logo,.sec-title,.btn-line,.btn-text,.icon-btn,.watch-card-name,.watch-card-price,.pk h3,.offer-card h3,.faq-item summary:hover,.faq-item[open] summary,.site-nav a:hover,.hero-arrow,.quick-add,.heart,.tl-title,#commande .sec-title,.foot p:first-child,.logo span,.btn-text:hover,.faq-item .chev{color:var(--emerald-t)}
+.btn-line,.btn-ghost{background:transparent;color:var(--emerald-t);border-color:var(--emerald)}
+.btn-line:hover,.btn-ghost:hover{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.btn-solid,.hero-content .btn-solid{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.btn-solid:hover,.hero-content .btn-solid:hover{background:var(--emerald-2);border-color:var(--emerald-2);color:#fff}
+.btn[aria-disabled="true"]{background:var(--mist);border-color:var(--line);color:var(--muted)}
+/* header / nav */
+.site-header{background:rgba(14,15,18,.96);border-bottom:1px solid var(--line)}
+#mnav,.bg-white{background:var(--paper) !important}
+#cartCount{background:var(--emerald) !important;color:#fff !important;border-color:var(--paper) !important}
+.icon-btn{background:var(--mist);border-color:var(--line)}
+/* forms */
+.field{background:var(--mist);color:var(--ink);border-color:var(--line)}
+.field::placeholder{color:var(--muted);opacity:.8}
+.field:focus{border-color:var(--emerald);box-shadow:0 0 0 3px rgba(81,119,174,.3)}
+.select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%238EADDD' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E")}
+.err{border-color:#E57373;color:#F2A0A0}
+.badge,.tag{background:var(--mist);color:var(--ink);border-color:var(--line)}
+/* announce bar stays accent-filled */
+.announce{background:var(--emerald);color:#fff;border-bottom:0}
+/* hero: image + dark overlay already, keep light text */
+.hero-wrap{background:var(--mist)}
+.hero-arrow{background:rgba(14,15,18,.82);color:#fff;border-color:rgba(255,255,255,.6)}
+.hero-arrow:hover{background:var(--emerald)}
+/* trust */
+.trust-item{background:var(--mist);border:1.5px solid var(--line) !important}
+.trust-item-title{color:var(--ink)}
+.trust-item-icon,.step-n{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+/* product tiles keep a light photo backdrop so product photos (multiply blend) stay natural */
+.watch-card-media,.pv-media,.pk-media,.offer-img,.thumb{background:var(--photo)}
+.watch-card-media,.pv-media{border:1.5px solid var(--line) !important}
+.watch-card:hover .watch-card-media{border-color:var(--emerald) !important}
+.watch-card-badge,.heart.on{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.heart,.quick-add{background:rgba(14,15,18,.9);color:var(--emerald-t);border-color:var(--emerald)}
+.heart.on{color:#fff}
+.watch-card-pair{color:var(--muted)}
+/* offer card */
+.offer-card{background:var(--mist);color:var(--ink);border:1.5px solid var(--emerald)}
+.offer-card .prog>i{background:var(--emerald)}
+.prog,.prog.on-dark{background:var(--line)}
+.offer-plus{background:var(--paper);color:var(--emerald-t);border-color:var(--emerald)}
+/* packs */
+#packs{background:var(--mist);border-top:1px solid var(--line)}
+.pk,.pk:first-child{border-top-color:var(--line)}
+.pk>div>div:last-child{background:var(--paper);border:1.5px solid var(--line);color:var(--ink)}
+.opt,.pf{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.opt:not([aria-pressed="true"]):hover,.pf:not([aria-pressed="true"]):hover{border-color:var(--emerald)}
+.opt[aria-pressed="true"],.pf[aria-pressed="true"]{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.pf[aria-pressed="true"] .pf-n{background:#fff;color:var(--emerald);border-color:#fff}
+.pf-n{border-color:var(--line)}
+/* how-to-order section */
+#commande{--ink:#EDEEF0;--muted:#9A9DA6;--line:#2A2C33;background:var(--paper) !important;color:var(--ink)}
+.tl-item{background:var(--mist);border-color:var(--line)}
+.tl-dot{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.tl-desc{color:var(--muted)}
+/* faq */
+.faq-item[open]{background:var(--mist)}
+.faq-item p{color:var(--muted)}
+/* footer */
+.foot{--ink:#EDEEF0;--muted:#9A9DA6;--line:#2A2C33;background:var(--mist);color:var(--ink);border:1.5px solid var(--line)}
+/* cart drawer, checkout modal, sticky bars, order form (inline #fff backgrounds) */
+[style*="background:#fff"],[style*="background: #fff"]{background:var(--paper) !important}
+#orderForm{background:var(--mist);border:1.5px solid var(--line) !important}
+#drawer,#ckModal>div{background:var(--paper) !important;color:var(--ink)}
+#mbar,#pvBar{background:var(--paper) !important;border-top-color:var(--line) !important}
+[style*="rgba(17,24,39"]{background:rgba(0,0,0,.7) !important}
+#toast{background:var(--mist) !important;color:var(--ink) !important;border:1.5px solid var(--emerald)}
+/* borders drawn via inline var(--line) pick up the dark token automatically */
+img{color-scheme:normal}
 </style>
 </head>
 <body class="font-sans text-ink">
