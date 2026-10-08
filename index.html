@@ -3,41 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5177AE">
 <title>دار الوقت — ساعات وعطور</title>
 
 <script>
-const PIXEL_ID='YOUR_PIXEL_ID'; 
-const CONVERSION_EVENT='Purchase'; 
+const PIXEL_ID='YOUR_PIXEL_ID';
+const CONVERSION_EVENT='Purchase';
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 if(PIXEL_ID!=='YOUR_PIXEL_ID'){fbq('init',PIXEL_ID);fbq('track','PageView');}
 const track=(e,d)=>{try{if(PIXEL_ID!=='YOUR_PIXEL_ID')fbq('track',e,d)}catch(_){}};
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Reem+Kufi:wght@500;600;700&family=Readex+Pro:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script>
 tailwind.config={
   theme:{
     extend:{
       colors:{
-        brand:'#0F172A',      // Deep Slate / Almost Black for premium feel
-        brandtext:'#B8860B',  // Dark Goldenrod for elegant accents
-        accent:'#D4AF37',     // Metallic Gold
-        onbrand:'#FFFFFF',    // White text on dark elements
-        tint:'#FFFFFF',       // Warm cream for subtle backgrounds
-        ink:'#1E293B',        // Dark slate for text (softer than pure black)
-        paper:'#FFFFFF',      // Warm cream backgrounds
-        card:'#FFFFFF',       // White cards
-        line:'#E2E8F0',       // Light elegant borders
-        muted:'#64748B'       // Slate gray for secondary text
+        ink:'#2B2B2B',
+        paper:'#FFFFFF',
+        mist:'#F5F5F5',
+        line:'#E3E3E3',
+        muted:'#6B6B6B'
       },
       fontFamily:{
-        display:['Readex Pro','Segoe UI','Tahoma','sans-serif'],
-        sans:['Readex Pro','Segoe UI','Tahoma','sans-serif']
-      },
-      boxShadow: {
-        'lux': '0 4px 20px -2px rgba(15, 23, 42, 0.05)',
-        'lux-hover': '0 10px 25px -5px rgba(15, 23, 42, 0.1)',
+        sans:['Readex Pro','IBM Plex Sans Arabic','Segoe UI','Tahoma','sans-serif']
       }
     }
   }
@@ -45,594 +38,772 @@ tailwind.config={
 </script>
 
 <style>
-/* ===== BASE ===== */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { font-size: 16px; line-height: 1.6; background: #F8F9FA; overflow-x: clip; font-family: 'Readex Pro', 'Segoe UI', Tahoma, sans-serif; }
+:root{--emerald:#5177AE;--emerald-2:#3F6194;--brass:#FFFFFF;--brass-d:#5177AE;--ink:#2B2B2B;--paper:#FFFFFF;--mist:#F5F5F5;--line:#E3E3E3;--muted:#6B6B6B;--r:16px;--r-sm:12px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{font-family:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif;font-size:16px;line-height:1.7;color:var(--ink);background:var(--paper);overflow-x:clip;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.logo{font-family:'Reem Kufi','IBM Plex Sans Arabic',sans-serif;font-weight:600;line-height:1.3}
+h1,h2,h3,h4,p,b,span,a,button,s{letter-spacing:0 !important}
+img,svg,video{max-width:100%}
+::selection{background:var(--emerald);color:#fff}
+:focus-visible{outline:2px solid var(--emerald);outline-offset:2px}
+.hero-content :focus-visible,#commande :focus-visible,.foot :focus-visible,.offer-card :focus-visible{outline-color:var(--brass)}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+.scrollbar-hide{scrollbar-width:none}.scrollbar-hide::-webkit-scrollbar{display:none}
+.hidden{display:none !important}
+/* announce + header */
+.announce{background:var(--emerald);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;display:flex;justify-content:center;flex-wrap:wrap;gap:4px 22px;line-height:1.5}
+.announce span+span{border-inline-start:1px solid rgba(255,255,255,.3);padding-inline-start:22px}
+@media(max-width:600px){.announce span:nth-child(3){display:none}}
+.site-header{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:700;color:var(--emerald);text-decoration:none}
+.logo span{font-weight:500;color:var(--brass-d)}
+.logo::before{content:'';width:30px;height:30px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'%3E%3Ccircle cx='16' cy='16' r='14' fill='%235177AE'/%3E%3Ccircle cx='16' cy='16' r='11' stroke='%23FFFFFF' stroke-width='1' stroke-dasharray='1 3.2'/%3E%3Cpath d='M16 16V8M16 16l5 3' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.site-nav{display:none}
+@media(min-width:768px){.site-nav{display:flex;gap:36px;align-items:center}.site-nav a{font-size:15px;font-weight:600;color:var(--muted);text-decoration:none;padding:6px 0;transition:color .15s}.site-nav a:hover{color:var(--emerald);text-decoration:underline;text-decoration-color:var(--emerald);text-decoration-thickness:2px;text-underline-offset:10px}}
+.header-actions{display:flex;align-items:center;gap:8px}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border:1.5px solid var(--emerald);border-radius:var(--r-sm);font-weight:600;font-size:15px;line-height:1.2;text-align:center;cursor:pointer;transition:background .15s,color .15s,border-color .15s;font-family:inherit}
+.btn:active{transform:translateY(1px)}
+.btn-solid{background:var(--emerald);color:#fff}.btn-solid:hover{background:var(--emerald-2);border-color:var(--emerald-2)}
+.btn-line{background:transparent;color:var(--emerald)}.btn-line:hover{background:var(--emerald);color:#fff}
+.btn-ghost{background:transparent;color:var(--emerald);border-color:var(--line)}.btn-ghost:hover{border-color:var(--emerald);background:var(--emerald);color:#fff}
+.btn-sm{min-height:42px;padding:0 18px;font-size:14px}.btn-lg{min-height:56px;font-size:16px;padding:0 30px}
+.btn[aria-disabled="true"]{background:var(--mist);border-color:var(--line);color:var(--muted);cursor:not-allowed}
+.btn-text{font-size:14px;font-weight:600;color:var(--emerald);background:none;border:0;padding:0;min-height:44px;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.btn-text:hover{color:var(--brass-d)}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper);color:var(--emerald);cursor:pointer}
+.icon-btn:hover{border-color:var(--emerald)}
+/* forms */
+.field{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;color:var(--ink);font:inherit;font-size:16px;transition:border-color .15s,box-shadow .15s}
+.field::placeholder{color:var(--muted);opacity:.6}
+.field:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(81,119,174,.18)}
+.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235177AE' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;padding-left:36px}
+.err{border:1.5px solid #9B2C2C;color:#9B2C2C;border-radius:var(--r-sm);padding:10px 14px;font-size:14px;font-weight:600}
+.badge,.tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);line-height:1.5}
+/* sections */
+.sec{padding-top:72px;padding-bottom:72px}
+@media(min-width:768px){.sec{padding-top:112px;padding-bottom:112px}}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+.sec-label{display:none}
+.sec-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.2;color:var(--emerald)}
+.sec-sub{color:var(--muted);font-size:1.0625rem;max-width:46ch;margin-top:12px}
+.prog{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.prog>i{display:block;height:100%;background:var(--emerald);border-radius:4px;transition:width .35s ease}
+.prog.on-dark{background:rgba(255,255,255,.18)}.prog.on-dark>i{background:#fff}
+.step{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.step-n{display:grid;place-items:center;width:24px;height:24px;background:var(--emerald);color:var(--brass);border-radius:50%;font-size:12px;font-weight:700;flex-shrink:0}
+/* trust */
+.trust-bar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.trust-item{display:flex;align-items:center;gap:14px;padding:22px 20px;background:var(--mist)}
+.trust-item-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--emerald);color:var(--brass);flex-shrink:0}
+.trust-item-title{font-size:14px;font-weight:700;line-height:1.4}
+.trust-item-sub{font-size:13px;color:var(--muted);line-height:1.4}
+@media(min-width:768px){.trust-bar{grid-template-columns:repeat(4,1fr)}.trust-item{padding:26px 28px}}
+/* hero */
+.hero-wrap{position:relative;overflow:hidden;background:var(--emerald);height:calc(100vh - 112px);height:calc(100svh - 112px);min-height:560px}
+.hero-track{height:100%;display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.hero-slide{flex:0 0 100%;position:relative;height:100%}
 
-/* ===== TYPOGRAPHY ===== */
-.font-display, h1, h2, h3 { font-weight: 700; letter-spacing: 0; }
-h2.section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); color: #111827; margin-bottom: 0.5rem; }
-h2.section-title::after { content: ''; display: block; width: 36px; height: 3px; background: #D4AF37; border-radius: 2px; margin-top: 14px; }
-.section-sub { color: #6B7280; font-size: 1.05rem; line-height: 1.7; }
+.hero-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-content{--ink:#fff;--muted:rgba(255,255,255,.74);--line:rgba(255,255,255,.2);position:absolute;z-index:3;left:0;right:0;bottom:0;padding:24px 20px 28px;background:var(--emerald);color:#fff}
+@media(max-width:767px){.hero-content>:nth-child(1),.hero-content>:nth-child(3){display:none}.hero-content .dial{width:84px;height:84px}.hero-content>:nth-child(4){margin-top:16px !important}.hero-content>:nth-child(5){margin-top:16px !important;flex-direction:row !important}.hero-content>:nth-child(5)>*{flex:1;min-height:48px}.hero-content>:nth-child(6){margin-top:14px !important}}
+@media(min-width:768px){.hero-content{left:auto;top:0;right:0;bottom:0;width:42%;display:flex;flex-direction:column;justify-content:center;padding:48px 56px}}
+.hero-content h1{color:#fff}
+.hero-content .badge{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.hero-content .badge svg{color:var(--brass)}
+.hero-content .btn-solid{background:#fff;border-color:#fff;color:var(--emerald)}
+.hero-content .btn-solid:hover{background:#E6E6E6;border-color:#E6E6E6}
+.hero-content .btn-line{color:#fff;border-color:rgba(255,255,255,.45)}
+.hero-content .btn-line:hover{background:#fff;color:var(--emerald);border-color:#fff}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.hero-content>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero-content>:nth-child(2){animation-delay:.08s}.hero-content>:nth-child(3){animation-delay:.16s}.hero-content>:nth-child(4){animation-delay:.24s}.hero-content>:nth-child(5){animation-delay:.32s}.hero-content>:nth-child(6){animation-delay:.4s}
+.hero-arrow{position:absolute;top:30%;transform:translateY(-50%);z-index:5;width:42px;height:42px;display:grid;place-items:center;background:var(--paper);color:var(--emerald);border:0;border-radius:50%;cursor:pointer;padding:0}
+.hero-arrow:hover{background:var(--mist)}
+.hero-arrow-prev{left:12px}.hero-arrow-next{right:12px}
+@media(min-width:768px){.hero-arrow{top:50%}.hero-arrow-prev{left:16px}.hero-arrow-next{right:calc(42% + 16px)}}
+.hero-dots{display:flex;gap:7px;align-items:center}
+.hero-dot{width:7px;height:7px;border-radius:7px;background:rgba(255,255,255,.35);border:0;padding:0;cursor:pointer;transition:width .25s,background .2s}
+.hero-dot.on{width:24px;background:var(--brass)}
+.dial{width:124px;height:124px;flex-shrink:0;overflow:visible}
+.dial-dot{transform-origin:60px 60px;animation:tick 60s steps(60) infinite}
+@keyframes tick{to{transform:rotate(360deg)}}
+/* watches */
+.watch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 14px}
+@media(min-width:640px){.watch-grid{grid-template-columns:repeat(3,1fr);gap:36px 20px}}
+@media(min-width:1024px){.watch-grid{grid-template-columns:repeat(4,1fr)}}
+.watch-card{cursor:pointer;position:relative}
+.watch-card-media{position:relative;background:var(--mist);aspect-ratio:4/5;overflow:hidden;border-radius:var(--r)}
+.watch-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:18px;mix-blend-mode:multiply;transition:transform .4s ease}
+.watch-card:hover .watch-card-img{transform:scale(1.05)}
+.watch-card-badge{position:absolute;top:12px;inset-inline-start:12px;background:var(--emerald);color:var(--brass);border-radius:999px;padding:3px 12px;font-size:12px;font-weight:700;line-height:1.6}
+.watch-card-body{padding:16px 2px 0}
+.watch-card-name{font-family:'Reem Kufi',inherit;font-size:17px;font-weight:600;color:var(--emerald);text-decoration:none;display:block}
+.watch-card-price{font-size:20px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.watch-card-pair{font-size:12.5px;color:var(--muted);margin-top:2px}
+.watch-card-cta{margin-top:14px;width:100%}
+.heart{position:absolute;top:10px;inset-inline-end:10px;width:38px;height:38px;display:grid;place-items:center;border:0;background:var(--paper);color:var(--emerald);cursor:pointer;border-radius:50%}
+.heart.on{background:var(--emerald);color:var(--brass)}.heart.on svg{fill-opacity:1}
+.offer-card{grid-column:span 2;order:-1;background:var(--emerald);color:#fff;border-radius:var(--r);padding:30px 26px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:200px}
+.offer-card h3{font-size:1.9rem;color:#fff}
+.offer-card .prog>i{background:var(--brass)}
+@media(min-width:640px){.offer-card{order:99}}
+@media(min-width:1024px){.offer-card{grid-column:span 1}}
+/* packs */
+#packs{background:var(--mist)}
+.pk{padding-top:56px;padding-bottom:56px;border-top:1px solid var(--line)}
+.pk:first-child{border-top:0;padding-top:0}
+.pk-media{background:var(--paper);border-radius:20px;overflow:hidden;aspect-ratio:1/1;cursor:pointer}
+@media(min-width:768px){.pk-media{aspect-ratio:4/5}}
+.pk-img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb{width:60px;height:60px;object-fit:cover;border-radius:var(--r-sm);border:1.5px solid transparent;opacity:.6;cursor:pointer;flex-shrink:0;background:#fff;transition:opacity .15s,border-color .15s}
+.thumb:hover{opacity:1}.thumb.on{opacity:1;border-color:var(--emerald)}
+.opt,.pf{border:1.5px solid var(--line);border-radius:var(--r-sm);background:#fff;color:var(--ink);cursor:pointer;transition:background .15s,border-color .15s,color .15s;font-family:inherit}
+.opt{min-height:60px;padding:8px;text-align:center;line-height:1.4}
+.pf{display:flex;align-items:center;gap:10px;width:100%;min-height:58px;padding:10px 12px;text-align:start}
+.opt:not([aria-pressed="true"]):hover,.pf:not([aria-pressed="true"]):hover{border-color:var(--emerald)}
+.opt[aria-pressed="true"],.pf[aria-pressed="true"]{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.pf.dim{opacity:.4}
+.pf-n{display:grid;place-items:center;width:24px;height:24px;border:1.5px solid var(--line);border-radius:50%;font-size:11px;font-weight:700;flex-shrink:0}
+.pf[aria-pressed="true"] .pf-n{background:var(--brass);color:var(--emerald);border-color:var(--brass)}
+@media(max-width:380px){.perf-grid{grid-template-columns:1fr !important}}
+/* timeline */
+#commande{--ink:#fff;--muted:rgba(255,255,255,.7);--line:rgba(255,255,255,.2);background:var(--emerald) !important;color:#fff}
+#commande .sec-title{color:#fff}
+.tl{position:relative;display:grid;list-style:none;margin:0;padding:0}
+.tl-item{display:flex;gap:20px;padding-bottom:40px}.tl-item:last-child{padding-bottom:0}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:44px}
+.tl-dot{width:44px;height:44px;border-radius:50%;background:var(--brass);color:var(--emerald);display:grid;place-items:center;font-family:'Reem Kufi',sans-serif;font-size:18px;font-weight:700;flex-shrink:0}
+.tl-line{flex:1;width:1px;background:rgba(255,255,255,.25);margin-top:6px}
+.tl-item:last-child .tl-line{display:none}
+.tl-body{padding-top:8px}
+.tl-title{font-size:20px;font-weight:600;color:#fff}
+.tl-desc{font-size:15px;color:var(--muted);margin-top:6px;max-width:38ch}
+@media(min-width:768px){.tl{grid-template-columns:repeat(3,1fr)}.tl-item{flex-direction:column;gap:0;padding-bottom:0;padding-inline-end:40px}.tl-item:last-child{padding-inline-end:0}.tl-left{flex-direction:row;width:auto;margin-bottom:24px}.tl-line{flex:1;width:auto;height:1px;margin:0 12px 0 0}.tl-item:last-child .tl-line{display:block;opacity:0}.tl-body{padding-top:0}}
+/* faq */
+.faq-item{border-bottom:1px solid var(--line)}.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px;padding:18px 0;font-size:16.5px;font-weight:600;cursor:pointer;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover,.faq-item[open] summary{color:var(--emerald)}
+.faq-item .chev{flex-shrink:0;transition:transform .2s;color:var(--brass-d)}
+.faq-item[open] .chev{transform:rotate(45deg)}
+.faq-item p{padding:0 0 24px;color:var(--muted);font-size:15px;max-width:58ch;line-height:1.8}
+/* footer */
+.foot{--ink:#fff;--muted:rgba(255,255,255,.66);--line:rgba(255,255,255,.14);background:var(--emerald);color:#fff;font-size:14px}
+.foot p:first-child{font-family:'Reem Kufi',sans-serif}
+/* product view */
+.pv-media{position:relative;background:var(--mist);border-radius:20px;overflow:hidden;aspect-ratio:1/1}
+@media(min-width:768px){.pv-media{aspect-ratio:4/5}}
+.pv-img{width:100%;height:100%;display:block}
+.pv-img.contain{object-fit:contain;padding:32px;mix-blend-mode:multiply}.pv-img.cover{object-fit:cover}
+.drawer{transition:transform .3s cubic-bezier(.4,0,.2,1)}
+#ckModal>div{max-height:92vh;max-height:92dvh;border-radius:20px 20px 0 0 !important}
+@media(max-width:767px){body{padding-bottom:calc(5rem + env(safe-area-inset-bottom,0px))}#mbar,#pvBar{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}#ckModal>div{padding-bottom:env(safe-area-inset-bottom,0px)}#drawer{max-width:100%}#toast{width:max-content;max-width:90vw;text-align:center}.f2{grid-template-columns:1fr !important}}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
 
-/* ===== BUTTONS ===== */
-button { transition: all .18s ease; border-radius: 8px; }
-button:not(:disabled):active { transform: scale(.97); }
-.btn-primary { background: #111827; color: #fff; font-weight: 700; padding: 14px 28px; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-.btn-primary:hover { background: #1F2937; }
-.btn-gold { background: #D4AF37; color: #fff; font-weight: 700; padding: 14px 28px; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-.btn-gold:hover { background: #B8952B; }
-.btn-outline { background: transparent; color: #111827; font-weight: 600; padding: 13px 28px; border-radius: 8px; border: 1.5px solid #E5E7EB; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-.btn-outline:hover { border-color: #111827; background: #F9FAFB; }
+/* OUTLINE THEME: no colored backgrounds, color lives in text + borders */
+.announce{background:#fff;color:var(--emerald);border-bottom:1.5px solid var(--emerald)}
+.announce span+span{border-inline-start-color:var(--emerald)}
+.btn-solid,.hero-content .btn-solid{background:#fff;color:var(--emerald);border-color:var(--emerald)}
+.btn-solid:hover,.hero-content .btn-solid:hover{background:var(--mist);color:var(--emerald-2);border-color:var(--emerald-2)}
+.btn-line,.hero-content .btn-line{background:#fff;color:var(--emerald);border-color:var(--emerald)}
+.btn-line:hover,.hero-content .btn-line:hover,.btn-ghost:hover{background:var(--mist);color:var(--emerald);border-color:var(--emerald)}
+.hero-content{--ink:#2B2B2B;--muted:#6B6B6B;--line:#E3E3E3;background:#fff;color:var(--ink);border-top:3px solid var(--emerald)}
+@media(min-width:768px){.hero-content{border-top:0;border-left:3px solid var(--emerald)}}
+.hero-content h1{color:var(--emerald)}
+.hero-content .badge{background:#fff;color:var(--emerald);border-color:var(--emerald)}
+.hero-content .badge svg{color:var(--emerald)}
+.hero-content [style*="var(--brass)"]{color:var(--emerald) !important}
+.hero-dot{background:#D9D9D9}.hero-dot.on{background:var(--emerald)}
+.hero-arrow{border:1.5px solid var(--emerald)}
+.offer-card{background:#fff;color:var(--ink);border:2px solid var(--emerald)}
+.offer-card h3{color:var(--emerald)}
+.prog.on-dark{background:#E3E3E3}.offer-card .prog>i{background:var(--emerald)}
+.step-n,.trust-item-icon{background:#fff;border:1.5px solid var(--emerald);color:var(--emerald)}
+.trust-item{background:#fff}
+.watch-card-badge,.heart.on{background:#fff;color:var(--emerald);border:1.5px solid var(--emerald)}
+.opt[aria-pressed="true"],.pf[aria-pressed="true"]{background:#fff;border-color:var(--emerald);color:var(--emerald);box-shadow:inset 0 0 0 1px var(--emerald)}
+.pf[aria-pressed="true"] .pf-n{background:#fff;color:var(--emerald);border-color:var(--emerald)}
+#packs{background:#fff;border-top:1px solid var(--line)}
+#commande{--ink:#2B2B2B;--muted:#6B6B6B;--line:#E3E3E3;background:#fff !important;color:var(--ink)}
+#commande .sec-title,.tl-title{color:var(--emerald)}
+.tl-dot{background:#fff;border:2px solid var(--emerald);color:var(--emerald)}
+.tl-line{background:var(--emerald);opacity:.35}
+.foot{--ink:#2B2B2B;--muted:#6B6B6B;--line:#E3E3E3;background:#fff;color:var(--ink);border-top:3px solid var(--emerald)}
+.foot p:first-child{color:var(--emerald)}
+#toast{background:#fff !important;color:var(--emerald) !important;border:1.5px solid var(--emerald)}
 
-/* ===== CARDS ===== */
-.card { background: #fff; border: 1px solid #F3F4F6; border-radius: 16px; overflow: hidden; transition: box-shadow .2s, transform .2s; }
-.card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+/* HERO: full-screen image, text directly over it on the right */
+.hero-slide::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.42);z-index:1}
+.hero-content{--ink:#fff;--muted:rgba(255,255,255,.88);--line:rgba(255,255,255,.4);background:transparent;color:#fff;border:0 !important}
+@media(min-width:768px){.hero-content{width:46%;padding:48px 64px}}
+.hero-content h1{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero-content .badge{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.hero-content .badge svg{color:#fff}
+.hero-content [style*="var(--brass)"]{color:#fff !important}
+.hero-content .btn-solid{background:#fff;color:var(--emerald);border-color:#fff}
+.hero-content .btn-solid:hover{background:#FFFFFF;border-color:#FFFFFF}
+.hero-content .btn-line{background:transparent;color:#fff;border-color:#fff}
+.hero-content .btn-line:hover{background:rgba(255,255,255,.16);color:#fff}
+.hero-content .dial line{stroke:#fff}.hero-content .dial-dot circle{fill:#fff}.hero-content .dial text{fill:#fff}
+.hero-dot{background:rgba(255,255,255,.45)}.hero-dot.on{background:#fff}
+.hero-arrow{background:rgba(255,255,255,.92);border-color:#fff}
+@media(min-width:768px){.hero-arrow-next{right:16px}}
 
-/* ===== INPUTS ===== */
-input, select, textarea { background: #F9FAFB; color: #111827; border: 1.5px solid #E5E7EB; border-radius: 8px; font-family: 'Readex Pro', 'Segoe UI', Tahoma, sans-serif; }
-input::placeholder { color: #9CA3AF; }
-input:focus, select:focus { border-color: #D4AF37; outline: none; box-shadow: 0 0 0 3px rgba(212,175,55,0.12); background: #fff; }
-::selection { background: #D4AF37; color: #fff; }
+.offer-imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.offer-img{position:relative;aspect-ratio:1/1;border:1.5px solid var(--emerald);border-radius:var(--r-sm);background:#fff;cursor:pointer;overflow:hidden}
+.offer-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:10px;mix-blend-mode:multiply}
+@media(min-width:640px) and (max-width:1023px){.offer-imgs{max-width:420px}}
 
-/* ===== HEADER ===== */
-header.sticky { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+/* modern offer card */
+.offer-card{border-radius:24px;padding:24px 22px 26px;gap:22px}
+.offer-imgs{grid-template-columns:1fr auto 1fr;align-items:start;gap:0;padding-bottom:16px}
+.offer-img{border-radius:20px;border-width:2px}
+.offer-img:last-of-type{transform:translateY(16px)}
+.offer-plus{position:relative;z-index:2;width:36px;height:36px;margin:30px -18px 0;border-radius:50%;border:2px solid var(--emerald);background:#fff;color:var(--emerald);display:grid;place-items:center;font-size:22px;font-weight:600;line-height:1}
+.offer-card h3{font-size:clamp(1.9rem,3vw,2.3rem);line-height:1.15}
+.offer-card .prog{height:6px}
 
-/* ===== HERO SLIDER ===== */
-.hgrid { display: grid; }
-.hslide { grid-area: 1/1; opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility .7s; }
-.hslide.is-on { opacity: 1; visibility: visible; }
-.hslide.is-on .hero-txt { animation: rise .7s cubic-bezier(0.16,1,0.3,1) both .15s; }
-.hnav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; display: grid; place-items: center; background: rgba(255,255,255,0.95); color: #111827; border-radius: 50%; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,0.12); border: 1px solid #F3F4F6; transition: all .2s; }
-.hnav:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transform: translateY(-50%) scale(1.06); }
-.hdot { width: 7px; height: 7px; border-radius: 9999px; background: rgba(255,255,255,0.45); transition: all .3s ease; }
-.hdot.on { width: 22px; background: #D4AF37; }
-.hero-overlay { background: linear-gradient(105deg, rgba(10,15,30,0.82) 0%, rgba(10,15,30,0.42) 55%, transparent 100%); }
+/* modern packs */
+.pk-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:22px}
+.pk-pair:not(:has(.pk-media2)){grid-template-columns:1fr;padding-bottom:0}
+.pk-pair .pk-media{aspect-ratio:3/4;border:2px solid var(--emerald);border-radius:26px}
+.pk-media2{transform:translateY(22px)}
+.pk>div>div:last-child{background:#fff;border:1.5px solid var(--emerald);border-radius:28px;padding:28px 24px}
+@media(min-width:768px){.pk>div>div:last-child{padding:36px 34px}}
+.pk h3{font-size:clamp(1.8rem,3.4vw,2.4rem);color:var(--emerald);line-height:1.2}
+.thumb{width:68px;height:68px;border-radius:18px;border-width:2px}
+.pk .opt{border-radius:16px}.pk .pf{border-radius:16px}
+.pk .perf-grid{gap:10px}
+#packs .sec-title{font-size:clamp(2.2rem,4.6vw,3.4rem)}
 
-/* ===== ANIMATIONS ===== */
-@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.hero-in { animation: rise .7s cubic-bezier(0.16,1,0.3,1) both; }
+/* ADVANCED PASS */
+.btn{border-radius:999px}.btn-sm{padding:0 20px}
+.field,.select{border-radius:14px}
+.icon-btn{border-radius:50%}
+.site-header{border-bottom:1.5px solid var(--line)}
+@media(min-width:768px){.site-nav{gap:8px}.site-nav a{padding:8px 18px;border:1.5px solid transparent;border-radius:999px;text-decoration:none !important}.site-nav a:hover{border-color:var(--emerald);color:var(--emerald)}}
+.sec-title::after{content:'';display:block;width:56px;margin-top:14px;border-top:4px solid var(--emerald);border-radius:4px}
+.sec-title{font-size:clamp(2.2rem,4.6vw,3.4rem)}
+.trust-bar{gap:12px;background:transparent;padding:20px 24px}
+.trust-item{border:1.5px solid var(--line);border-radius:22px;padding:18px}
+.watch-card-media{border:1.5px solid var(--line);border-radius:26px;background:#fff;transition:border-color .2s}
+.watch-card:hover .watch-card-media{border-color:var(--emerald)}
+.watch-card-cta{display:none}
+.watch-card-body{padding:14px 6px 0}
+.watch-card-price{color:var(--emerald)}
+.quick-add{position:absolute;bottom:12px;inset-inline-end:12px;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--emerald);background:#fff;color:var(--emerald);display:grid;place-items:center;cursor:pointer;transition:transform .15s}
+.quick-add:hover{transform:scale(1.08)}.quick-add:active{transform:scale(.94)}
+.heart{border:1.5px solid var(--line)}
+.tl{gap:16px}
+.tl-item{border:1.5px solid var(--line);border-radius:26px;padding:26px !important}
+.tl-line{display:none !important}
+.tl-dot{width:52px;height:52px;font-size:22px}
+@media(min-width:768px){.tl-left{margin-bottom:20px}}
+.faq-item{border:1.5px solid var(--line) !important;border-radius:22px;margin-bottom:12px;padding:0 24px;transition:border-color .2s}
+.faq-item[open]{border-color:var(--emerald) !important}
+.faq-item p{padding-bottom:22px}
+.foot .container>div{align-items:start}
+.foot ul li::before{content:'';display:inline-block;width:8px;height:8px;margin-inline-end:10px;border:1.5px solid var(--emerald);border-radius:50%}
+.pv-media{border:1.5px solid var(--line);border-radius:28px;background:#fff}
+#orderForm{border:1.5px solid var(--emerald) !important;border-radius:28px !important;padding:28px !important}
+#drawer{border-radius:0 28px 28px 0}
+#drawer .btn-lg,#ckModal .btn-lg{width:100%}
 
-/* ===== THUMBNAILS ===== */
-.thumb { border-radius: 8px; opacity: .55; transition: all .2s; border: 2px solid transparent; }
-.thumb.on, .thumb:hover { opacity: 1; border-color: #D4AF37; }
-.zoom img { transition: transform .6s cubic-bezier(0.25,0.46,0.45,0.94); }
-.zoom:hover img { transform: scale(1.04); }
+/* LUXE PASS: hairlines, serif type, sharp corners, centered headings */
+:root{--r:2px;--r-sm:2px;--line:#D8DEE8}
+h1,h2,h3,h4,.logo,.watch-card-name,.tl-dot,.foot p:first-child{font-family:'Amiri','Cormorant Garamond','IBM Plex Sans Arabic',serif}
+.logo{font-size:28px;font-weight:700}
+.logo::before{width:26px;height:26px}
+.announce{font-size:12.5px;font-weight:500;padding:8px 16px;border-bottom-width:1px}
+.site-header{border-bottom-width:1px}
+.site-nav a{border-radius:0 !important;padding:8px 14px !important;font-weight:500;border-width:0 0 1px 0 !important}
+.site-nav a:hover{border-bottom-color:var(--emerald) !important}
+.btn{border-radius:0;border-width:1px;font-weight:500;min-height:54px;padding:0 34px}
+.btn-sm{min-height:42px;padding:0 22px}
+.icon-btn{border-radius:0;border-width:1px}
+.field,.select{border-radius:0;border-width:1px}
+.field:focus{box-shadow:none}
+.badge,.tag{border-radius:0;font-weight:500}
+/* hero frame */
+.hero-wrap::after{content:'';position:absolute;inset:18px;border:1px solid rgba(255,255,255,.55);z-index:2;pointer-events:none}
+.hero-content{z-index:3}
+.hero-content h1{font-weight:400 !important;font-size:clamp(2.6rem,5.4vw,4.4rem) !important;line-height:1.2 !important}
+.hero-arrow{border-radius:0;border-width:1px}
+.hero-dot{border-radius:0;height:3px}.hero-dot.on{width:32px}
+/* headings centered */
+.sec>.container>div:first-child,#packs .container>div:first-child,#commande .container>div:first-child{text-align:center}
+.sec-title{font-weight:400;font-size:clamp(2.5rem,5.2vw,4rem);line-height:1.15}
+.sec-title::after{width:72px;margin:18px auto 0;border-top-width:1px}
+.sec-sub{margin-inline:auto;font-size:1.1rem}
+#faq .container>div{display:block !important}
+#faq .container>div>div:first-child{max-width:none !important;text-align:center;margin-bottom:40px}
+#faq .container>div>div:last-child{max-width:820px;margin-inline:auto}
+/* trust: hairline row */
+.trust-bar{gap:0;padding:0 24px}
+.trust-item{border:0;border-radius:0;border-inline-start:1px solid var(--line);padding:26px 24px}
+.trust-item:first-child{border-inline-start:0}
+.trust-item-icon{border-width:1px}
+/* watches */
+.watch-grid{gap:44px 24px}
+.watch-card-media{border-radius:0;border-width:1px}
+.watch-card-img{padding:26px}
+.watch-card-badge{border-radius:0;border-width:1px;font-weight:500}
+.watch-card-body{text-align:center;padding:18px 0 0}
+.watch-card-name{font-size:21px;font-weight:400}
+.watch-card-price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600}
+.quick-add,.heart{border-width:1px}
+.offer-card{border-radius:0;border-width:1px;outline:1px solid var(--emerald);outline-offset:-9px;padding:34px 30px;text-align:center}
+.offer-img,.offer-plus{border-radius:0;border-width:1px}
+.offer-plus{border-radius:50%}
+.offer-card h3{font-weight:400}
+/* packs */
+.pk-pair .pk-media{border-radius:0;border-width:1px}
+.pk>div>div:last-child{border-radius:0;border-width:1px;outline:1px solid var(--emerald);outline-offset:-8px;padding:44px 40px}
+.thumb{border-radius:0;border-width:1px}
+.pk .opt,.pk .pf,.opt,.pf{border-radius:0;border-width:1px}
+.pk h3{font-weight:400;font-size:clamp(2rem,3.6vw,2.8rem)}
+.step-n{border-width:1px}
+/* steps / faq */
+.tl-item{border-radius:0;border-width:1px;text-align:center}
+.tl-left{justify-content:center}
+.tl-dot{border-width:1px;font-weight:400;width:56px;height:56px;font-size:26px}
+.tl-title{font-weight:400;font-size:24px}
+.tl-desc{margin-inline:auto}
+.faq-item{border:0 !important;border-bottom:1px solid var(--line) !important;border-radius:0;margin:0;padding:0}
+.faq-item:first-child{border-top:1px solid var(--line) !important}
+.faq-item[open]{border-bottom-color:var(--emerald) !important}
+.faq-item summary{font-family:'Amiri',serif;font-size:20px;font-weight:400}
+/* product, forms, cart */
+.pv-media{border-radius:0;border-width:1px}
+#orderForm{border-radius:0 !important;border-width:1px !important;outline:1px solid var(--emerald);outline-offset:-8px;padding:36px !important}
+#drawer{border-radius:0}
+#ckModal>div{border-radius:0 !important}
+.foot{border-top-width:1px}
+.foot .container>div{text-align:center}
+.foot ul{align-items:center}
+.foot [style*="flex-direction:column"]{align-items:center}
+.foot p{margin-inline:auto}
+.foot ul li::before{display:none}
 
-/* ===== CART DRAWER ===== */
-.drawer { transition: transform .38s cubic-bezier(0.16,1,0.3,1); }
+/* PACKS: new stacked showcase view */
+#packs .sec{padding-top:96px}
+.pk{padding-top:88px;padding-bottom:88px}
+.pk>div{grid-template-columns:1fr !important;gap:0 !important}
+.pk>div>div:first-child{order:0 !important}
+.pk-pair{grid-template-columns:1fr 1fr;gap:14px;padding-bottom:0}
+.pk-pair .pk-media{aspect-ratio:3/4}
+@media(min-width:768px){.pk-pair .pk-media{aspect-ratio:16/11}}
+.pk-pair:not(:has(.pk-media2)) .pk-media{aspect-ratio:16/9}
+.pk-media2{transform:none}
+.pk>div>div:first-child>div.scrollbar-hide{justify-content:center;margin-top:16px !important}
+.pk>div>div:last-child{max-width:940px;width:100%;margin:32px auto 0;padding:40px 24px;text-align:center}
+@media(min-width:768px){.pk>div>div:last-child{padding:56px 56px}}
+.pk>div>div:last-child>h3{font-size:clamp(2.2rem,4vw,3.2rem)}
+.pk>div>div:last-child>p{margin-inline:auto}
+.pk .perf-grid{grid-template-columns:repeat(2,1fr) !important}
+@media(min-width:640px){.pk .perf-grid{grid-template-columns:repeat(3,1fr) !important}}
+@media(min-width:1024px){.pk .perf-grid{grid-template-columns:repeat(4,1fr) !important}}
+@media(max-width:380px){.pk .perf-grid{grid-template-columns:1fr !important}}
+.pk .step{justify-content:center}
+.pk [id^="opts-"]>ul{max-width:420px;margin-inline:auto}
 
-/* ===== MISC ===== */
-.bar { transition: width .4s cubic-bezier(0.16,1,0.3,1); }
-details > summary { list-style: none; cursor: pointer; }
-details > summary::-webkit-details-marker { display: none; }
-details[open] .chev { transform: rotate(45deg); }
-.chev { transition: transform .2s; }
-:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }
+/* MODERN + ADVANCED PASS (Readex Pro, bento, soft radii) */
+:root{--r:26px;--r-sm:16px}
+body,.btn,.field,.opt,.pf,.btn-text,button,input,textarea,select{font-family:'Readex Pro','IBM Plex Sans Arabic',sans-serif}
+h1,h2,h3,h4,.logo,.watch-card-name,.tl-dot,.foot p:first-child,.faq-item summary,.watch-card-price,.sec-title{font-family:'Readex Pro','IBM Plex Sans Arabic',sans-serif}
+body{font-weight:400}
+.logo{font-size:23px;font-weight:700}
+/* marquee announce */
+.announce{display:block;overflow:hidden;padding:9px 0;font-size:13px;font-weight:500}
+.marq-in{display:flex;width:max-content;animation:marq 32s linear infinite}
+.marq-g{display:flex;flex-shrink:0}
+.marq-g span{padding:0 28px;border:0 !important;white-space:nowrap}
+.marq-g span+span::before,.marq-g span:first-child::before{content:'';display:inline-block;width:6px;height:6px;margin-inline-end:28px;border:1.5px solid var(--emerald);border-radius:50%;vertical-align:middle}
+@keyframes marq{to{transform:translateX(50%)}}
+@media(max-width:600px){.announce span:nth-child(3){display:inline}}
+/* controls */
+.btn{border-radius:999px;border-width:1.5px;font-weight:600;min-height:54px;padding:0 30px}
+.btn-sm{min-height:44px;padding:0 20px}
+.icon-btn{border-radius:50%;border-width:1.5px}
+.field,.select{border-radius:16px;border-width:1.5px}
+.field:focus{box-shadow:0 0 0 4px rgba(81,119,174,.12)}
+.badge,.tag{border-radius:999px;font-weight:600}
+.site-nav a{border-radius:999px !important;padding:9px 20px !important;font-weight:500;border-width:1.5px !important;border-color:transparent !important}
+.site-nav a:hover{border-color:var(--emerald) !important}
+/* hero as inset rounded stage */
+.hero-wrap{margin:12px;border-radius:34px;height:calc(100svh - 136px);min-height:560px}
+.hero-wrap::after{display:none}
+.hero-content h1{font-weight:600 !important;font-size:clamp(2.3rem,4.8vw,4rem) !important;line-height:1.3 !important}
+.hero-arrow{border-radius:50%;border-width:1.5px}
+.hero-dot{height:7px;border-radius:7px}
+/* headings editorial */
+.sec>.container>div:first-child,#packs .container>div:first-child,#commande .container>div:first-child{text-align:start;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 40px}
+.sec-title{font-weight:600;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.2}
+.sec-title::after{display:none}
+.sec-sub{margin:0;max-width:36ch;font-size:1rem}
+#faq .container>div{display:grid !important}
+#faq .container>div>div:first-child{text-align:start;margin-bottom:0}
+#faq .container>div>div:last-child{max-width:none;margin-inline:0}
+/* bento trust */
+.trust-bar{gap:14px;padding:22px 24px}
+.trust-item{border:1.5px solid var(--line);border-radius:26px;padding:20px}
+.trust-item:first-child{border-inline-start:1.5px solid var(--line)}
+.trust-item-icon{border-width:1.5px}
+/* watches */
+.watch-grid{gap:34px 18px}
+.watch-card-media{border-radius:30px;border-width:1.5px}
+.watch-card-img{padding:22px}
+.watch-card-badge{border-radius:999px;border-width:1.5px;font-weight:600}
+.watch-card-body{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 12px;text-align:start;padding:16px 8px 0}
+.watch-card-name{font-size:16px;font-weight:600;display:inline}
+.watch-card-price{font-size:19px;font-weight:700;margin:0}
+.watch-card-pair{flex-basis:100%}
+.quick-add,.heart{border-width:1.5px}
+.offer-card{border-radius:32px;border-width:1.5px;outline:0;padding:26px 24px;text-align:start}
+.offer-img{border-radius:22px;border-width:1.5px}
+.offer-card h3{font-weight:600}
+/* packs */
+.pk-pair .pk-media{border-radius:30px;border-width:1.5px}
+.thumb{border-radius:16px;border-width:1.5px}
+.pk>div>div:last-child{border-radius:34px;border-width:1.5px;outline:0}
+.pk .opt,.pk .pf,.opt,.pf{border-radius:18px;border-width:1.5px}
+.pk h3{font-weight:600}
+.step-n{border-width:1.5px}
+/* steps / faq */
+.tl-item{border-radius:30px;border-width:1.5px;text-align:start}
+.tl-left{justify-content:flex-start}
+.tl-dot{border-width:1.5px;font-weight:700;font-size:20px;width:52px;height:52px}
+.tl-title{font-weight:600;font-size:20px}
+.tl-desc{margin-inline:0}
+.faq-item{border:1.5px solid var(--line) !important;border-radius:24px;margin-bottom:12px;padding:0 24px}
+.faq-item:first-child{border-top:1.5px solid var(--line) !important}
+.faq-item[open]{border-color:var(--emerald) !important}
+.faq-item summary{font-size:16.5px;font-weight:600}
+/* product, forms, cart, footer */
+.pv-media{border-radius:32px;border-width:1.5px}
+#orderForm{border-radius:32px !important;border-width:1.5px !important;outline:0;padding:30px !important}
+#drawer{border-radius:0 32px 32px 0}
+#ckModal>div{border-radius:32px 32px 0 0 !important}
+.foot{margin:12px;border:1.5px solid var(--emerald);border-radius:34px;overflow:hidden}
+.foot .container>div{text-align:start}
+.foot ul{align-items:flex-start}
+.foot [style*="flex-direction:column"]{align-items:flex-start}
+.foot p{margin-inline:0}
+.foot ul li::before{display:inline-block}
 
-/* ===== BADGE ===== */
-.badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
-.badge-gold { background: rgba(212,175,55,0.12); color: #92700A; border: 1px solid rgba(212,175,55,0.3); }
-.badge-dark { background: #111827; color: #fff; }
-.badge-green { background: rgba(16,185,129,0.1); color: #065F46; border: 1px solid rgba(16,185,129,0.2); }
-
-/* ===== SECTION SPACING ===== */
-.section-pad { padding-top: 80px; padding-bottom: 80px; }
-@media(min-width:768px){ .section-pad { padding-top: 112px; padding-bottom: 112px; } }
-
-/* ===== STEP CARDS ===== */
-.step-card { background: #fff; border: 1px solid #F3F4F6; border-radius: 20px; padding: 36px 28px; text-align: center; position: relative; transition: box-shadow .2s; }
-.step-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
-.step-num { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; margin: 0 auto 20px; }
-
-/* ===== FAQ ===== */
-.faq-item { border-bottom: 1px solid #F3F4F6; }
-.faq-item summary { padding: 22px 0; font-size: 1rem; font-weight: 700; color: #111827; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.faq-item summary:hover { color: #D4AF37; }
-.faq-item p { padding-bottom: 20px; color: #6B7280; line-height: 1.8; font-size: 0.95rem; }
-
-/* ===== TRUST BAR ===== */
-.trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; color: #374151; }
-.trust-icon { width: 36px; height: 36px; border-radius: 10px; background: #F3F4F6; display: flex; align-items: center; justify-content: center; color: #D4AF37; flex-shrink: 0; }
-
-/* ===== WATCH CARD ===== */
-.watch-card { background: #fff; border-radius: 16px; overflow: hidden; transition: all .22s; }
-.watch-card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.09); transform: translateY(-3px); }
-
-/* ===== PACK CARD ===== */
-.pack-card { background: #fff; border: 1px solid #F3F4F6; border-radius: 20px; overflow: hidden; }
-
-/* ===== PERFUME PICKER ===== */
-.perf-btn { display: flex; align-items: center; gap: 10px; text-align: right; border: 1.5px solid #E5E7EB; padding: 12px 14px; border-radius: 10px; transition: all .18s; background: #fff; cursor: pointer; width: 100%; }
-.perf-btn[aria-pressed="true"] { border-color: #D4AF37; background: #FFFBEB; }
-.perf-btn:not([aria-pressed="true"]):hover { border-color: #9CA3AF; }
-.perf-dot { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 0.7rem; font-weight: 800; flex-shrink: 0; transition: all .18s; }
-.perf-dot-off { border: 1.5px solid #D1D5DB; color: #9CA3AF; }
-.perf-dot-on { background: #D4AF37; color: #fff; }
-
-/* ===== SIZE SELECTOR ===== */
-.size-btn { flex: 1; min-width: 5rem; padding: 12px 8px; border: 1.5px solid #E5E7EB; border-radius: 10px; background: #fff; cursor: pointer; transition: all .18s; text-align: center; }
-.size-btn[aria-pressed="true"] { border-color: #111827; background: #111827; color: #fff; }
-.size-btn:not([aria-pressed="true"]):hover { border-color: #6B7280; }
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #F3F4F6; }
-::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
-
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-/* ===== MOBILE RESPONSIVE ===== */
-html { -webkit-text-size-adjust: 100%; }
-img, video, svg { max-width: 100%; }
-#ckModal > div { max-height: 92vh; max-height: 92dvh; }
-@media (max-width: 767px) {
-  input, select, textarea { font-size: 16px !important; } /* prevents iOS zoom on focus */
-  button, a.btn, .btn { min-height: 44px; }
-  #drawer { max-width: 100%; }
-  #ckModal > div { padding-bottom: env(safe-area-inset-bottom, 0px); }
-  #ckModal button[onclick="sendOrder()"] { position: sticky; bottom: 0; box-shadow: 0 -8px 16px rgba(255,255,255,.95); }
-  #mbar, #productView > div.md\:hidden { padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
-  body { padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); }
-  #toast { width: max-content; max-width: 90vw; text-align: center; }
-  h2.section-title { font-size: 1.5rem; }
-  .step-card { padding: 28px 20px; }
-  .pack-card, .watch-card { border-radius: 14px; }
-  .hnav { width: 36px; height: 36px; }
-  .f2 { grid-template-columns: 1fr !important; }
-  #orderForm { padding: 20px !important; }
+/* COLOR PASS: filled backgrounds with burgundy as the principal color */
+:root{--tint:#FFFFFF}
+.announce{background:var(--emerald);color:#fff}
+.marq-g span+span::before,.marq-g span:first-child::before{border-color:#fff}
+.btn-solid{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.btn-solid:hover{background:var(--emerald-2);border-color:var(--emerald-2);color:#fff}
+.btn-line{background:transparent;color:var(--emerald);border-color:var(--emerald)}
+.btn-line:hover,.btn-ghost:hover{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.hero-content .btn-solid{background:var(--emerald);color:#fff;border-color:#fff}
+.hero-content .btn-solid:hover{background:var(--emerald-2);border-color:#fff;color:#fff}
+.hero-content .btn-line:hover{background:#fff;color:var(--emerald)}
+.trust-item{background:var(--tint);border-color:transparent}
+.trust-item:first-child{border-inline-start-color:transparent}
+.trust-item-icon,.step-n{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.watch-card-media,.pv-media{background:var(--tint);border-color:transparent}
+.watch-card-badge,.heart.on{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.offer-card{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.offer-card h3{color:#fff}
+.prog.on-dark{background:rgba(255,255,255,.25)}.offer-card .prog>i{background:#fff}
+#packs{background:var(--tint);border-top:0}
+.pk{border-top-color:rgba(81,119,174,.18)}
+.pk>div>div:last-child{background:#fff;border-color:transparent}
+.opt[aria-pressed="true"],.pf[aria-pressed="true"]{background:var(--emerald);border-color:var(--emerald);color:#fff;box-shadow:none}
+.pf[aria-pressed="true"] .pf-n{background:#fff;color:var(--emerald);border-color:#fff}
+#commande{--ink:#fff;--muted:rgba(255,255,255,.78);--line:rgba(255,255,255,.28);background:var(--emerald) !important;color:#fff}
+#commande .sec-title,.tl-title{color:#fff}
+.tl-item{background:transparent;border-color:rgba(255,255,255,.28)}
+.tl-dot{background:#fff;color:var(--emerald);border-color:#fff}
+.faq-item[open]{background:var(--tint)}
+.foot{--ink:#fff;--muted:rgba(255,255,255,.75);--line:rgba(255,255,255,.2);background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.foot p:first-child{color:#fff}
+#toast{background:var(--emerald) !important;color:#fff !important;border-color:var(--emerald)}
+#orderForm{background:var(--tint);border-color:transparent !important}
+.field{background:#fff}
+/* PHONE FIXES */
+@media(max-width:767px){
+  .container{padding:0 16px}
+  .header-inner{padding:0 16px;height:64px}
+  .hero-wrap{margin:8px;border-radius:26px;height:calc(100svh - 124px);min-height:520px}
+  .hero-slide::after{background:rgba(0,0,0,.5)}
+  .hero-content{padding:20px 18px 22px}
+  .hero-content h1{font-size:clamp(1.9rem,8vw,2.4rem) !important}
+  .hero-arrow{width:36px;height:36px}
+  .trust-bar{grid-template-columns:1fr 1fr;gap:10px;padding:16px}
+  .trust-item{flex-direction:column;align-items:flex-start;gap:10px;padding:16px}
+  .trust-item-icon{width:38px;height:38px}
+  .sec{padding-top:56px;padding-bottom:56px}
+  .sec-title{font-size:clamp(1.9rem,8vw,2.4rem)}
+  .watch-grid{gap:26px 12px}
+  .watch-card-body{flex-direction:column;align-items:flex-start;gap:2px;padding:12px 4px 0}
+  .watch-card-media{border-radius:22px}
+  .quick-add{width:40px;height:40px;bottom:8px;inset-inline-end:8px}
+  .heart{width:34px;height:34px;top:8px;inset-inline-end:8px}
+  .offer-card{padding:22px 18px;border-radius:26px}
+  .pk{padding-top:56px;padding-bottom:56px}
+  .pk-pair{gap:10px}
+  .pk-pair .pk-media{border-radius:22px}
+  .pk>div>div:last-child{padding:26px 16px;border-radius:26px;margin-top:20px}
+  .pk .pf{padding:8px 10px;min-height:54px}
+  .tl-item{padding:20px !important;border-radius:24px}
+  #faq .container>div{gap:24px !important}
+  .faq-item{padding:0 16px;border-radius:20px}
+  .foot{margin:8px;border-radius:26px}
+  .foot .container{padding-top:40px !important;padding-bottom:40px !important}
+  #productView [style*="position:sticky"]{position:static !important}
+  .pv-media{border-radius:24px}
+  #orderForm{padding:22px 16px !important;border-radius:26px !important}
 }
-@media (max-width: 380px) {
-  h1.font-display { font-size: 1.9rem !important; }
-  #watchGrid { gap: 10px; }
-  .btn-primary, .btn-gold, .btn-outline { padding: 12px 18px; }
-}
 
-/* ===== MOBILE: all sections ===== */
-@media (max-width: 767px) {
-  .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; }
-  header .max-w-7xl { height: 60px !important; padding-left: 16px; padding-right: 16px; }
-  .max-w-7xl.px-5, section.px-5, .max-w-2xl.px-5 { padding-left: 16px; padding-right: 16px; }
-  /* hero */
-  .hero-txt h1 { font-size: 2rem !important; line-height: 1.25 !important; }
-  .hero-txt p { font-size: .95rem !important; }
-  .hero-txt a { width: 100%; }
-  /* section headers */
-  #montres > div:first-child, #packs .text-center, #commande .text-center, #faq .text-center { margin-bottom: 28px !important; }
-  /* trust bar + category tiles */
-  .trust-item { font-size: .8rem; }
-  section.pt-12 a.zoom { height: 11rem !important; }
-  section.pt-12 a.zoom > div:last-child { padding: 18px !important; }
-  /* watch cards (2 per row) */
-  #watchGrid article { border-radius: 14px; }
-  #watchGrid article p, #watchGrid article h3 { overflow-wrap: anywhere; }
-  /* packs */
-  #packGrid article .p-8, #packGrid article.p-6 { padding: 20px !important; }
-  #packGrid article { gap: 24px !important; }
-  #packGrid h3.font-display { font-size: 1.75rem !important; }
-  #packGrid .min-h-\[280px\] { min-height: 240px !important; }
-  /* product page */
-  #productView h1 { font-size: 1.75rem !important; }
-  #productView .font-display.text-4xl { font-size: 2rem !important; }
-  #productView .grid.md\:grid-cols-12 { gap: 24px !important; }
-  #productView .thumb { width: 60px !important; height: 60px !important; }
-  /* cart drawer */
-  #cartItems { padding: 14px !important; }
-  #cartItems .w-20.h-24 { width: 64px; height: 80px; }
-  #cartItems .font-display.text-lg { font-size: 1rem; }
-  /* steps + faq + footer */
-  .step-card { padding: 22px 18px !important; }
-  #faqList summary { font-size: 1rem !important; padding-top: 16px !important; padding-bottom: 16px !important; }
-  footer .max-w-7xl { padding-top: 40px !important; padding-bottom: 40px !important; gap: 28px !important; }
-}
-@media (max-width: 380px) {
-  #packGrid .grid.grid-cols-2 { grid-template-columns: 1fr !important; }
-  #watchGrid article .p-4, #watchGrid article .p-5 { padding: 10px !important; }
-}
+/* SVG ICONS */
+.marq-g span{display:inline-flex;align-items:center;gap:8px}
+.marq-g span+span::before,.marq-g span:first-child::before{display:none}
+.marq-g span svg{flex-shrink:0}
+.foot ul li{display:flex;align-items:center;gap:10px}
+.foot ul li::before{display:none !important}
+.foot ul li svg{flex-shrink:0;opacity:.9}
+.hero-content .btn-line svg{transform:scaleX(-1)}
+.offer-plus svg{display:block}
+.tl-dot svg{display:block}
 
-/* ===== PACK PARFUMS: mobile ===== */
-.pk-card > *, #productView .grid > * { min-width: 0; }
-.pk-thumbs { -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
-.pk-thumbs .thumb { scroll-snap-align: start; }
-@media (max-width: 767px) {
-  .pk-card { gap: 20px !important; padding: 14px !important; overflow: hidden; }
-  .pk-card .md\:sticky { position: static !important; }
-  .pk-main { aspect-ratio: 1 / 1 !important; }
-  .pk-thumbs { gap: 8px !important; margin-top: 10px !important; padding-bottom: 6px; }
-  .pk-thumbs .thumb { width: 56px !important; height: 56px !important; }
-  .pk-card h3 { font-size: 1.5rem !important; }
-  .pk-card h3 + p { font-size: .95rem !important; margin-top: 6px !important; }
-  .perf-grid { gap: 8px !important; }
-  .perf-grid > button { padding: 10px !important; gap: 8px !important; min-height: 56px; }
-  .perf-grid span.block.text-sm { font-size: .8rem !important; overflow-wrap: anywhere; }
-  .pk-card .min-w-\[5\.5rem\] { min-width: 4.6rem !important; padding: 10px 6px !important; }
-  .pk-card .font-display.text-4xl { font-size: 1.9rem !important; }
-  #packGrid article .p-8 { padding: 20px 18px 22px !important; }
-}
-@media (max-width: 340px) { .perf-grid { grid-template-columns: 1fr !important; } }
-
-/* ===== WATCH CARD (store style) ===== */
-.wc { background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .2s, border-color .2s; }
-.wc:hover { box-shadow:0 10px 28px -8px rgba(15,23,42,.14); border-color:#D4AF37; }
-.wc-media { position:relative; cursor:pointer; aspect-ratio:4/5; background:#FFFFFF; overflow:hidden; }
-.wc-img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:14px 14px 34px; mix-blend-mode:multiply; transition:transform .5s; }
-.wc:hover .wc-img { transform:scale(1.04); }
-.wc-badge { position:absolute; top:12px; left:12px; background:#0F172A; color:#D4AF37; font-size:12px; font-weight:700; padding:6px 10px; border-radius:4px; letter-spacing:.02em; }
-.wc-actions { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:2; }
-.wc-icon { width:40px; height:40px; min-height:0; border-radius:50%; background:#fff; color:#0F172A; display:grid; place-items:center; box-shadow:0 2px 10px rgba(15,23,42,.14); border:none; cursor:pointer; padding:0; }
-.wc-icon:hover { background:#0F172A; color:#fff; }
-.wc-heart.on { color:#D4AF37; }
-.wc-heart.on svg { fill-opacity:1; }
-.wc-body { padding:14px 14px 16px; display:flex; flex-direction:column; align-items:center; text-align:center; flex:1; }
-.wc-title { font-size:15px; font-weight:700; color:#0F172A; line-height:1.5; cursor:pointer; }
-.wc-title:hover { color:#B8860B; }
-.wc-sub { font-size:12.5px; color:#64748B; margin-top:4px; }
-.wc-price { margin-top:8px; font-size:20px; color:#0F172A; line-height:1.2; }
-.wc-pair { margin-top:3px; margin-bottom:auto; font-size:12.5px; color:#B8860B; font-weight:600; }
-.wc-pair s { color:#94A3B8; font-weight:400; margin-inline-start:4px; }
-.wc-btn { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:11px 10px; border:1.5px solid #0F172A; border-radius:8px; background:transparent; color:#0F172A; font-weight:700; font-size:14px; cursor:pointer; margin-top:14px; }
-.wc-btn:hover { background:#0F172A; color:#fff; }
-@media (max-width:767px){
-  .wc-body { padding:10px 10px 12px; }
-  .wc-title { font-size:13.5px; }
-  .wc-sub { font-size:11.5px; }
-  .wc-price { font-size:17px; }
-  .wc-btn { font-size:13px; padding:10px 6px; }
-  .wc-icon { width:36px; height:36px; }
-  .wc-badge { top:8px; left:8px; font-size:11px; padding:4px 8px; }
-  #watchGrid .wc-img { padding:10px 10px 30px; }
-}
+/* no tinted backgrounds: white surfaces separated by borders */
+.trust-item,.watch-card-media,.pv-media{border:1.5px solid var(--line) !important}
+.trust-item:first-child{border-inline-start:1.5px solid var(--line) !important}
+#orderForm{border:1.5px solid var(--line) !important}
+.pk>div>div:last-child{border:1.5px solid var(--line)}
+#packs{border-top:1px solid var(--line)}
+.pk{border-top-color:var(--line)}
+.faq-item[open]{background:#fff}
 </style>
 </head>
-<body class="font-sans text-ink bg-[#F8F9FA] antialiased pb-20 md:pb-0">
+<body class="font-sans text-ink">
 
-<div class="bg-[#111827] text-white text-[13px] text-center py-2.5 px-4 tracking-wide font-medium">
-  <span class="inline-flex items-center gap-2 justify-center">🚚 التوصيل مجاني لجميع المدن المغربية &nbsp;·&nbsp; الدفع عند الاستلام 💳</span>
-</div>
+<!-- ANNOUNCE BAR -->
+<div class="announce"><div class="marq-in"><div class="marq-g"><span>توصيل مجاني لجميع مدن المغرب</span>
+  <span>الدفع عند الاستلام</span>
+  <span>تأكيد فوري عبر واتساب</span></div><div class="marq-g"><span>توصيل مجاني لجميع مدن المغرب</span>
+  <span>الدفع عند الاستلام</span>
+  <span>تأكيد فوري عبر واتساب</span></div><div class="marq-g"><span>توصيل مجاني لجميع مدن المغرب</span>
+  <span>الدفع عند الاستلام</span>
+  <span>تأكيد فوري عبر واتساب</span></div><div class="marq-g"><span>توصيل مجاني لجميع مدن المغرب</span>
+  <span>الدفع عند الاستلام</span>
+  <span>تأكيد فوري عبر واتساب</span></div></div></div>
 
-<header class="sticky top-0 z-30 bg-white border-b border-gray-100 shadow-sm">
-  <div class="max-w-7xl mx-auto px-5 h-[68px] flex items-center justify-between gap-4">
-    <button id="menuBtn" onclick="toggleMenu()" class="md:hidden w-10 h-10 grid place-items-center border border-gray-200 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors" aria-label="القائمة" aria-expanded="false"></button>
-    <a href="#" class="font-display text-xl md:text-2xl text-[#111827] tracking-tight flex items-center gap-2">
-      <span class="w-8 h-8 rounded-lg bg-[#111827] flex items-center justify-center text-[#D4AF37] text-sm font-black">د</span>
-      دار الوقت
-    </a>
-    <nav class="hidden md:flex gap-8 text-[14.5px] font-medium text-gray-500">
-      <a href="#montres" class="py-2 hover:text-[#111827] transition-colors">الساعات</a>
-      <a href="#packs" class="py-2 hover:text-[#111827] transition-colors">باكات العطور</a>
-      <a href="#commande" class="py-2 hover:text-[#111827] transition-colors">طريقة الطلب</a>
-      <a href="#faq" class="py-2 hover:text-[#111827] transition-colors">الأسئلة</a>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <button id="menuBtn" onclick="toggleMenu()" class="icon-btn md:hidden" aria-label="القائمة" aria-expanded="false"></button>
+    <a href="#" class="logo">دار <span>الوقت</span></a>
+    <nav class="site-nav" aria-label="التنقل">
+      <a href="#montres">الساعات</a>
+      <a href="#packs">باكات العطور</a>
+      <a href="#commande">طريقة الطلب</a>
+      <a href="#faq">الأسئلة</a>
     </nav>
-    <button onclick="toggleCart(true)" class="relative flex items-center gap-2 text-sm font-bold h-10 px-5 bg-[#111827] text-white hover:bg-[#1F2937] rounded-lg transition-colors" aria-label="فتح السلة">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
-      <span class="hidden sm:inline">السلة</span>
-      <span id="cartCount" class="absolute -top-2 -right-2 bg-[#D4AF37] text-white text-[10px] font-black min-w-[18px] h-[18px] px-1 grid place-items-center rounded-full">0</span>
-    </button>
+    <div class="header-actions">
+      <button onclick="toggleCart(true)" class="btn btn-solid btn-sm relative" aria-label="فتح السلة">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="hidden sm:inline">السلة</span>
+        <span id="cartCount" class="absolute -top-2 -left-2 bg-white text-ink border border-ink text-[11px] font-bold min-w-[20px] h-5 px-1 grid place-items-center rounded-[10px] leading-none">0</span>
+      </button>
+    </div>
   </div>
-  <nav id="mnav" class="hidden md:hidden border-t border-gray-100 bg-white px-5 pb-3 text-[15px] font-medium text-gray-700">
-    <a href="#montres" onclick="toggleMenu(false)" class="flex items-center py-3.5 border-b border-gray-100 hover:text-[#D4AF37] transition-colors">الساعات</a>
-    <a href="#packs" onclick="toggleMenu(false)" class="flex items-center py-3.5 border-b border-gray-100 hover:text-[#D4AF37] transition-colors">باكات العطور</a>
-    <a href="#commande" onclick="toggleMenu(false)" class="flex items-center py-3.5 border-b border-gray-100 hover:text-[#D4AF37] transition-colors">طريقة الطلب</a>
-    <a href="#faq" onclick="toggleMenu(false)" class="flex items-center py-3.5 hover:text-[#D4AF37] transition-colors">الأسئلة</a>
+  <nav id="mnav" class="hidden md:hidden border-t border-line bg-white px-6 pb-2 text-[15px] font-medium" aria-label="القائمة">
+    <a href="#montres" onclick="toggleMenu(false)" class="flex items-center min-h-[52px] border-b border-line">الساعات</a>
+    <a href="#packs" onclick="toggleMenu(false)" class="flex items-center min-h-[52px] border-b border-line">باكات العطور</a>
+    <a href="#commande" onclick="toggleMenu(false)" class="flex items-center min-h-[52px] border-b border-line">طريقة الطلب</a>
+    <a href="#faq" onclick="toggleMenu(false)" class="flex items-center min-h-[52px]">الأسئلة</a>
   </nav>
 </header>
 
+<!-- PRODUCT VIEW PAGE -->
 <main id="productView" class="hidden"></main>
+
+<!-- HOME -->
 <div id="home">
 
-<section class="border-b border-gray-100" aria-roledescription="carousel" aria-label="العروض">
-  <div id="heroSlider" class="relative overflow-hidden">
-    <div class="hgrid">
-    <div class="hslide is-on" role="group" aria-roledescription="slide" aria-label="1 / 4" style="background:#F8FAFC" >
-      <div class="relative md:h-[clamp(500px,46vw,680px)]">
-        <img src="images/hero-image/hero-1.jpg" alt="ساعات فاخرة" width="1672" height="941" fetchpriority="high" class="w-full aspect-[4/5] md:aspect-auto md:absolute md:inset-0 md:h-full object-cover" style="object-position:center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="absolute inset-0 text-white z-10">
-          <div class="max-w-7xl mx-auto px-5 py-12 md:py-0 md:h-full flex items-center justify-start text-right">
-            <div class="md:w-5/12 hero-txt">
-              <span class="inline-block text-xs font-bold px-3 py-1 rounded-full bg-accent text-white tracking-wider uppercase shadow-sm">تخفيضات حصرية</span>
-              <h1 class="font-display text-4xl md:text-6xl leading-[1.2] mt-5 drop-shadow-md">الأناقة فمعصمك،<br>والعطر فجيبك.</h1>
-              <p class="mt-5 text-base md:text-lg text-white/90 max-w-md drop-shadow-sm">ساعات فاخرة ابتداءً من 199 درهم. احصل على ساعتين بـ 349 درهم فقط عوض <s class="opacity-70">398</s> درهم.</p>
-              <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                <a href="#montres" class="btn text-center bg-accent text-white font-medium px-8 py-3.5 text-base rounded-md hover:bg-[#b8952b] shadow-md">تسوق الساعات</a>
-                <a href="#packs" class="btn text-center bg-white/10 backdrop-blur-sm border border-white/30 font-medium px-8 py-3.5 text-base rounded-md text-white hover:bg-white hover:text-brand transition-all">استكشف الباكات</a>
-              </div>
-            </div>
-          </div>
+  <!-- HERO -->
+  <section id="hero"></section>
+
+  <!-- TRUST BAR -->
+  <section aria-label="ضمانات المتجر" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="container" style="padding:0">
+      <div id="trustBar" class="trust-bar"></div>
+    </div>
+  </section>
+
+  <!-- WATCHES -->
+  <section id="montres" class="sec">
+    <div class="container">
+      <div style="margin-bottom:48px">
+        <p class="sec-label">تشكيلة الساعات</p>
+        <h2 class="sec-title">الساعات الكلاسيكية</h2>
+        <p class="sec-sub">199 درهم للساعة الواحدة — ساعتين بـ 349 درهم فقط.</p>
+      </div>
+      <div id="watchGrid" class="watch-grid"></div>
+    </div>
+  </section>
+
+  <!-- PACKS -->
+  <section id="packs" style="border-top:1px solid var(--line)">
+    <div class="container sec">
+      <div style="margin-bottom:56px">
+        <p class="sec-label">العطور</p>
+        <h2 class="sec-title">باكات العطور</h2>
+        <p class="sec-sub">اختر حجم الباقة، ثم عطورك المفضلة. قوارير أنيقة بسعة 10 مل.</p>
+      </div>
+      <div id="packGrid"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="commande" style="background:var(--mist);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="container sec">
+      <div style="margin-bottom:56px">
+        <p class="sec-label">كيف يعمل</p>
+        <h2 class="sec-title">خطوات الطلب</h2>
+        <p class="sec-sub">من الاختيار حتى الاستلام في ثلاث خطوات بسيطة.</p>
+      </div>
+      <ol id="steps" class="tl"></ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="sec">
+    <div class="container">
+      <div style="display:grid;gap:48px" class="md:grid-cols-12">
+        <div class="md:col-span-4" style="max-width:320px">
+          <p class="sec-label">الدعم</p>
+          <h2 class="sec-title">الأسئلة الشائعة</h2>
+          <p class="sec-sub" style="margin-top:12px;font-size:15px">كل ما تحتاج معرفته قبل الطلب.</p>
         </div>
+        <div id="faqList" style="flex:1"></div>
       </div>
     </div>
-    
-    <div class="hslide" role="group" aria-roledescription="slide" aria-label="2 / 4" style="background:#F8FAFC" aria-hidden="true">
-      <div class="relative md:h-[clamp(500px,46vw,680px)]">
-        <img src="images/hero-image/hero-2.jpg" alt="باك 9PM" width="1672" height="941" loading="lazy" class="w-full aspect-[4/5] md:aspect-auto md:absolute md:inset-0 md:h-full object-cover" style="object-position:center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="absolute inset-0 text-white z-10">
-          <div class="max-w-7xl mx-auto px-5 py-12 md:py-0 md:h-full flex items-center justify-start text-right">
-            <div class="md:w-5/12 hero-txt">
-              <span class="inline-block text-xs font-bold px-3 py-1 rounded-full bg-accent text-white tracking-wider shadow-sm">المجموعة الحصرية</span>
-              <h2 class="font-display text-4xl md:text-6xl leading-[1.2] mt-5 drop-shadow-md">Rebel + Night Out</h2>
-              <p class="mt-5 text-base md:text-lg text-white/90 max-w-md drop-shadow-sm">تناغم مثالي. عطرين بسعة 10 مل لكل منهما. بـ 179 درهم فقط.</p>
-              <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                <button onclick="go('pack','p1')" class="btn text-center bg-accent text-white font-medium px-8 py-3.5 text-base rounded-md hover:bg-[#b8952b] shadow-md">اكتشف الباك</button>
-                <a href="#packs" class="btn text-center bg-white/10 backdrop-blur-sm border border-white/30 font-medium px-8 py-3.5 text-base rounded-md text-white hover:bg-white hover:text-brand transition-all">كل العطور</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hslide" role="group" aria-roledescription="slide" aria-label="3 / 4" style="background:#F8FAFC" aria-hidden="true">
-      <div class="relative md:h-[clamp(500px,46vw,680px)]">
-        <img src="images/hero-image/hero-3.jpg" alt="باكات العطور" width="1672" height="941" loading="lazy" class="w-full aspect-[4/5] md:aspect-auto md:absolute md:inset-0 md:h-full object-cover" style="object-position:center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="absolute inset-0 text-white z-10">
-          <div class="max-w-7xl mx-auto px-5 py-12 md:py-0 md:h-full flex items-center justify-start text-right">
-            <div class="md:w-5/12 hero-txt">
-              <span class="inline-block text-xs font-bold px-3 py-1 rounded-full bg-accent text-white tracking-wider shadow-sm">اختر عطرك</span>
-              <h2 class="font-display text-4xl md:text-6xl leading-[1.2] mt-5 drop-shadow-md">صمم الباك<br>الخاص بك.</h2>
-              <p class="mt-5 text-base md:text-lg text-white/90 max-w-md drop-shadow-sm">من 3 إلى 8 عطور مميزة، قارورات 10 مل. كلما زاد الحجم، قل السعر.</p>
-              <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                <a href="#packs" class="btn text-center bg-accent text-white font-medium px-8 py-3.5 text-base rounded-md hover:bg-[#b8952b] shadow-md">ابدأ الاختيار</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hslide" role="group" aria-roledescription="slide" aria-label="4 / 4" style="background:#F8FAFC" aria-hidden="true">
-      <div class="relative md:h-[clamp(500px,46vw,680px)]">
-        <img src="images/hero-image/hero-4.jpg" alt="Liquid Brun" width="1672" height="941" loading="lazy" class="w-full aspect-[4/5] md:aspect-auto md:absolute md:inset-0 md:h-full object-cover" style="object-position:center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="absolute inset-0 text-white z-10">
-          <div class="max-w-7xl mx-auto px-5 py-12 md:py-0 md:h-full flex items-center justify-start text-right">
-            <div class="md:w-5/12 hero-txt">
-              <span class="inline-block text-xs font-bold px-3 py-1 rounded-full bg-accent text-white tracking-wider shadow-sm">الرقي الفرنسي</span>
-              <h2 class="font-display text-4xl md:text-6xl leading-[1.2] mt-5 drop-shadow-md">Liquid Brun</h2>
-              <p class="mt-5 text-base md:text-lg text-white/90 max-w-md drop-shadow-sm">عطر يفيض بالأناقة. متوفر ضمن باقات العطور الفاخرة ابتداءً من 149 درهم.</p>
-              <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                <a href="#packs" class="btn text-center bg-accent text-white font-medium px-8 py-3.5 text-base rounded-md hover:bg-[#b8952b] shadow-md">اطلبه الآن</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    
-    <button id="hPrev" class="hnav hidden md:grid right-5" aria-label="السابق"></button>
-    <button id="hNext" class="hnav hidden md:grid left-5" aria-label="التالي"></button>
-    <div id="hDots" class="absolute bottom-5 inset-x-0 flex justify-center gap-2.5 z-10"></div>
-  </div>
-
-  <div class="bg-white border-b border-gray-100">
-    <ul class="max-w-7xl mx-auto px-5 py-4 flex flex-wrap justify-center gap-x-8 gap-y-3">
-      <li class="trust-item">
-        <span class="trust-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
-        </span>
-        الدفع عند الاستلام
-      </li>
-      <li class="trust-item">
-        <span class="trust-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-3"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-        </span>
-        شحن سريع لجميع المدن
-      </li>
-      <li class="trust-item">
-        <span class="trust-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.3L3 20l1.3-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
-        </span>
-        دعم عبر واتساب
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="max-w-7xl mx-auto px-5 pt-12 md:pt-16">
-  <div class="grid md:grid-cols-2 gap-5">
-    <a href="#montres" class="zoom group relative block overflow-hidden rounded-2xl bg-gray-100 h-60 md:h-72 transition-shadow hover:shadow-xl border border-gray-100">
-      <img src="images/watch/watch-2.jpeg" alt="ساعات" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" onerror="imgErr(this)">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/85 via-[#111827]/25 to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 p-7 text-white flex items-end justify-between">
-        <div>
-          <p class="font-display text-2xl font-bold">تشكيلة الساعات</p>
-          <p class="text-sm text-white/70 mt-1 font-medium">من 199 درهم</p>
-        </div>
-        <span class="w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm grid place-items-center group-hover:bg-[#D4AF37] transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M5 12l6-6M5 12l6 6"/></svg>
-        </span>
-      </div>
-    </a>
-    <a href="#packs" class="zoom group relative block overflow-hidden rounded-2xl bg-gray-100 h-60 md:h-72 transition-shadow hover:shadow-xl border border-gray-100">
-      <img src="images/pack-parfums-3/WhatsApp%20Image%202026-10-05%20at%2017.08.34.jpeg" alt="عطور" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" onerror="imgErr(this)">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/85 via-[#111827]/25 to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 p-7 text-white flex items-end justify-between">
-        <div>
-          <p class="font-display text-2xl font-bold">عطور فاخرة</p>
-          <p class="text-sm text-white/70 mt-1 font-medium">ركب باقتك · من 149 درهم</p>
-        </div>
-        <span class="w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm grid place-items-center group-hover:bg-[#D4AF37] transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M5 12l6-6M5 12l6 6"/></svg>
-        </span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<section id="montres" class="max-w-7xl mx-auto px-5 section-pad">
-  <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
-    <div>
-      <h2 class="section-title">الساعات الكلاسيكية</h2>
-      <p class="section-sub mt-2">199 درهم للساعة. ساعتين بـ 349 درهم فقط.</p>
-    </div>
-    <div class="w-full md:w-72 bg-white p-4 rounded-xl shadow-sm">
-      <p id="offerBar" class="text-sm text-[#111827] font-bold flex items-center justify-between"><span>العرض الحصري</span></p>
-      <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden mt-3"><div id="offerProg" class="bar h-full bg-[#D4AF37] rounded-full" style="width:0%"></div></div>
-    </div>
-  </div>
-  <div id="watchGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5"></div>
-</section>
-
-<section id="packs" class="bg-white border-y border-gray-100">
-  <div class="max-w-7xl mx-auto px-5 section-pad">
-    <div class="text-center max-w-2xl mx-auto mb-16">
-      <h2 class="section-title mx-auto" style="display:inline-block">باكات العطور</h2>
-      <p class="section-sub mt-4">اختر حجم الباقة المناسب لك، ثم قم بانتقاء عطورك المفضلة. جودة عالية في قوارير أنيقة بسعة 10 مل.</p>
-    </div>
-    <div id="packGrid" class="space-y-12 md:space-y-20"></div>
-  </div>
-</section>
-
-<section id="commande" class="max-w-7xl mx-auto px-5 section-pad">
-  <div class="text-center mb-14">
-    <h2 class="section-title mx-auto" style="display:inline-block">خطوات الطلب البسيطة</h2>
-    <p class="section-sub mt-3">عملية شراء سلسة وآمنة في ثلاث خطوات.</p>
-  </div>
-  <div class="grid md:grid-cols-3 gap-5 relative">
-    <div class="hidden md:block absolute top-[52px] inset-x-[16.66%] h-px bg-gray-200 z-0"></div>
-    <div class="step-card z-10">
-      <div class="step-num bg-gray-100 text-[#111827]">1</div>
-      <h3 class="font-display text-xl text-[#111827] mb-3">الاختيار</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">تصفح مجموعتنا وأضف الساعات أو العطور التي تعجبك إلى سلة التسوق.</p>
-    </div>
-    <div class="step-card z-10 border-[#D4AF37]/30" style="border-color:rgba(212,175,55,0.35)">
-      <div class="step-num bg-[#D4AF37] text-white">2</div>
-      <h3 class="font-display text-xl text-[#111827] mb-3">التأكيد</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">أدخل اسمك، رقم هاتفك، مدينتك وعنوانك. سيتم إرسال طلبك عبر واتساب لتأكيده.</p>
-    </div>
-    <div class="step-card z-10">
-      <div class="step-num bg-gray-100 text-[#111827]">3</div>
-      <h3 class="font-display text-xl text-[#111827] mb-3">الاستلام</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">يصلك طلبك أينما كنت في المغرب مجاناً، وتدفع نقداً عند الاستلام بكل أمان.</p>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="bg-white border-t border-gray-100">
-  <div class="max-w-2xl mx-auto px-5 section-pad">
-    <div class="text-center mb-12">
-      <h2 class="section-title mx-auto" style="display:inline-block">الأسئلة الشائعة</h2>
-    </div>
-    <div id="faqList"></div>
-  </div>
-</section>
+  </section>
 
 </div>
 
-<footer class="bg-[#111827] text-gray-400 text-sm">
-  <div class="max-w-7xl mx-auto px-5 py-14 grid md:grid-cols-12 gap-10">
-    <div class="md:col-span-5">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-8 h-8 rounded-lg bg-[#D4AF37] flex items-center justify-center text-white text-sm font-black">د</span>
-        <span class="font-display text-2xl text-white">دار الوقت</span>
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="container" style="padding-top:64px;padding-bottom:64px;display:grid;gap:40px">
+    <div style="display:grid;gap:40px" class="md:grid-cols-12">
+      <div class="md:col-span-5">
+        <p style="font-size:20px;font-weight:700;letter-spacing:-0.02em">دار <span style="font-weight:300">الوقت</span></p>
+        <p style="color:var(--muted);margin-top:12px;max-width:36ch;line-height:1.7">وجهتك للساعات الأنيقة والعطور الفاخرة. توصيل مجاني ودفع عند الاستلام لجميع المدن المغربية.</p>
       </div>
-      <p class="leading-relaxed text-gray-500 max-w-sm">وجهتك الأولى للساعات الأنيقة والعطور الفاخرة. توصيل مجاني ودفع عند الاستلام لجميع المدن المغربية.</p>
-    </div>
-    <div class="md:col-span-3">
-      <p class="text-white font-bold text-xs tracking-widest uppercase mb-5">روابط سريعة</p>
-      <div class="flex flex-col gap-3">
-        <a href="#montres" class="hover:text-[#D4AF37] transition-colors">تشكيلة الساعات</a>
-        <a href="#packs" class="hover:text-[#D4AF37] transition-colors">باقات العطور</a>
-        <a href="#faq" class="hover:text-[#D4AF37] transition-colors">الأسئلة الشائعة</a>
+      <div class="md:col-span-3">
+        <p style="font-weight:600;margin-bottom:16px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted)">روابط</p>
+        <div style="display:flex;flex-direction:column;gap:4px;color:var(--muted)">
+          <a href="#montres" style="padding:6px 0;color:inherit;text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">تشكيلة الساعات</a>
+          <a href="#packs" style="padding:6px 0;color:inherit;text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">باقات العطور</a>
+          <a href="#faq" style="padding:6px 0;color:inherit;text-decoration:none;transition:color .15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">الأسئلة الشائعة</a>
+        </div>
       </div>
-    </div>
-    <div class="md:col-span-4">
-      <p class="text-white font-bold text-xs tracking-widest uppercase mb-5">خدمة العملاء</p>
-      <ul class="space-y-3 text-gray-500">
-        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0"></span>التوصيل مجاني لجميع المدن</li>
-        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0"></span>الدفع الآمن عند الاستلام</li>
-        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0"></span>تأكيد فوري عبر واتساب</li>
-      </ul>
+      <div class="md:col-span-4">
+        <p style="font-weight:600;margin-bottom:16px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted)">خدمة العملاء</p>
+        <ul style="color:var(--muted);display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:0">
+          <li>التوصيل مجاني لجميع المدن</li>
+          <li>الدفع الآمن عند الاستلام</li>
+          <li>تأكيد فوري عبر واتساب</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-5 py-5 text-center text-gray-600 text-xs">
-      &copy; 2026 دار الوقت. جميع الحقوق محفوظة.
-    </div>
+  <div style="border-top:1px solid var(--line)">
+    <div class="container" style="padding-top:20px;padding-bottom:20px;color:var(--muted);font-size:12px">&copy; 2026 دار الوقت. جميع الحقوق محفوظة.</div>
   </div>
 </footer>
 
-<div id="mbar" class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-gray-100 p-3 hidden shadow-lg">
-  <button onclick="toggleCart(true)" class="w-full bg-[#111827] text-white font-bold py-3.5 px-5 flex items-center justify-between rounded-xl shadow-md">
-    <span>إتمام الطلب — <b id="mTotal" class="font-black text-[#D4AF37]">0 درهم</b></span>
-    <span class="text-sm bg-white/15 px-2.5 py-1 rounded-lg">السلة (<span id="mCount">0</span>)</span>
+<!-- MOBILE CART BAR -->
+<div id="mbar" class="md:hidden hidden" style="position:fixed;bottom:0;left:0;right:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:12px 16px">
+  <button onclick="toggleCart(true)" class="btn btn-solid btn-lg w-full" style="justify-content:space-between">
+    <span>إتمام الطلب <b id="mTotal" style="font-weight:700;margin-right:4px">0 درهم</b></span>
+    <span style="font-size:14px;font-weight:500">السلة (<span id="mCount">0</span>)</span>
   </button>
 </div>
 
-<div id="overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 hidden transition-opacity"></div>
-<aside id="drawer" class="drawer fixed top-0 left-0 h-full w-full max-w-[420px] bg-white z-50 -translate-x-full flex flex-col overflow-hidden shadow-2xl" aria-label="السلة">
-  <div class="flex items-center justify-between px-6 h-[68px] border-b border-gray-100 shrink-0">
-    <h3 class="font-display text-xl text-[#111827] font-bold">سلة المشتريات</h3>
-    <button onclick="toggleCart(false)" class="w-9 h-9 grid place-items-center bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-gray-600" aria-label="إغلاق" id="closeBtn"></button>
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleCart(false)" style="position:fixed;inset:0;background:rgba(17,24,39,.45);z-index:40;display:none"></div>
+
+<!-- CART DRAWER -->
+<aside id="drawer" class="drawer" style="position:fixed;top:0;left:0;height:100%;width:100%;max-width:420px;background:#fff;z-index:50;transform:translateX(-100%);display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--line)" aria-label="السلة">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:68px;border-bottom:1px solid var(--line);flex-shrink:0">
+    <h3 style="font-size:18px;font-weight:600">سلة المشتريات</h3>
+    <button onclick="toggleCart(false)" class="icon-btn" aria-label="إغلاق" id="closeBtn"></button>
   </div>
-  <div class="px-6 py-2.5 text-sm font-semibold shrink-0 border-b border-gray-100 text-center" id="cartNote"></div>
-  <div id="cartItems" class="flex-1 overflow-y-auto px-5 py-5 space-y-4 bg-[#F8F9FA]"></div>
-  <div class="border-t border-gray-100 p-5 space-y-4 bg-white shrink-0">
-    <div class="flex items-baseline justify-between">
-      <span class="text-gray-500 font-medium text-sm">المجموع الإجمالي:</span>
-      <b id="cartTotal" class="font-display text-2xl text-[#111827]">0 درهم</b>
+  <div style="padding:12px 20px;font-size:13px;flex-shrink:0;border-bottom:1px solid var(--line);text-align:center" id="cartNote"></div>
+  <div id="cartItems" style="flex:1;overflow-y:auto;padding:0 20px"></div>
+  <div style="border-top:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:16px;background:#fff;flex-shrink:0">
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <span style="color:var(--muted);font-size:14px">المجموع</span>
+      <b id="cartTotal" style="font-size:24px;font-weight:600">0 درهم</b>
     </div>
-    <button onclick="openCheckout()" class="btn w-full bg-[#111827] text-white font-bold py-3.5 text-base hover:bg-[#1F2937] rounded-xl flex items-center justify-center gap-2">
-      إتمام الطلب
-    </button>
-    <p class="text-xs text-gray-400 text-center flex items-center justify-center gap-1">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      معلوماتك آمنة. التوصيل مجاني والدفع عند الاستلام.
-    </p>
+    <button onclick="openCheckout()" class="btn btn-solid btn-lg w-full">إتمام الطلب</button>
+    <p style="font-size:12px;color:var(--muted);text-align:center">التوصيل مجاني والدفع عند الاستلام.</p>
   </div>
 </aside>
 
-<div id="ckModal" class="fixed inset-0 z-[60] hidden items-end md:items-center justify-center bg-black/50 backdrop-blur-sm p-0 md:p-4" onclick="if(event.target===this)closeCheckout()">
-  <div class="bg-white w-full max-w-md max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-2xl shadow-2xl" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
-    <div class="flex items-center justify-between px-6 h-[64px] border-b border-gray-100 sticky top-0 bg-white z-10">
-      <h3 class="font-display text-xl text-[#111827] font-bold">إتمام الطلب</h3>
-      <button onclick="closeCheckout()" class="w-9 h-9 grid place-items-center bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-600" aria-label="إغلاق">✕</button>
+<!-- CHECKOUT MODAL -->
+<div id="ckModal" style="position:fixed;inset:0;z-index:60;display:none;align-items:flex-end;justify-content:center;background:rgba(17,24,39,.5);padding:0" onclick="if(event.target===this)closeCheckout()">
+  <div style="background:#fff;width:100%;max-width:480px;overflow-y:auto;border-radius:14px 14px 0 0" role="dialog" aria-modal="true" aria-label="إتمام الطلب">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:68px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:10">
+      <h3 style="font-size:18px;font-weight:600">إتمام الطلب</h3>
+      <button onclick="closeCheckout()" class="icon-btn" aria-label="إغلاق" id="ckClose"></button>
     </div>
-    <div class="p-6 space-y-5">
-      <div class="bg-[#F8F9FA] border border-gray-100 rounded-xl p-4">
-        <div id="ckSummary" class="space-y-1.5 text-sm text-gray-700"></div>
-        <div class="flex items-baseline justify-between mt-3 pt-3 border-t border-gray-200">
-          <span class="text-gray-500 text-sm font-medium">المجموع (التوصيل مجاني):</span>
-          <b id="ckTotal" class="font-display text-xl text-[#111827]">0 درهم</b>
+    <div style="padding:20px;display:flex;flex-direction:column;gap:20px">
+      <div style="background:var(--mist);border:1px solid var(--line);border-radius:var(--r);padding:16px">
+        <div id="ckSummary" style="display:flex;flex-direction:column;gap:6px;font-size:14px"></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
+          <span style="color:var(--muted);font-size:13px">المجموع (التوصيل مجاني)</span>
+          <b id="ckTotal" style="font-size:20px;font-weight:600">0 درهم</b>
         </div>
       </div>
-      <div class="space-y-4">
+      <div style="display:flex;flex-direction:column;gap:16px">
         <div>
-          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fName">الاسم الكامل</label>
-          <input id="fName" placeholder="أدخل اسمك الكامل" autocomplete="name" class="w-full px-4 py-3 text-sm">
+          <label class="lbl" for="fName">الاسم الكامل</label>
+          <input id="fName" placeholder="أدخل اسمك الكامل" autocomplete="name" class="field">
         </div>
         <div>
-          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fPhone">رقم الهاتف</label>
-          <input id="fPhone" type="tel" placeholder="06..." autocomplete="tel" class="w-full px-4 py-3 text-sm" dir="ltr" style="text-align:right">
+          <label class="lbl" for="fPhone">رقم الهاتف</label>
+          <input id="fPhone" type="tel" placeholder="06..." autocomplete="tel" class="field" dir="ltr" style="text-align:right">
         </div>
         <div>
-          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fCity">المدينة</label>
-          <input id="fCity" placeholder="مدينتك" autocomplete="address-level2" class="w-full px-4 py-3 text-sm">
+          <label class="lbl" for="fCity">المدينة</label>
+          <input id="fCity" placeholder="مدينتك" autocomplete="address-level2" class="field">
         </div>
         <div>
-          <label class="block text-sm font-bold text-[#111827] mb-1.5" for="fAddress">العنوان</label>
-          <textarea id="fAddress" rows="2" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="w-full px-4 py-3 text-sm resize-none"></textarea>
+          <label class="lbl" for="fAddress">العنوان</label>
+          <textarea id="fAddress" rows="2" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="field" style="resize:none"></textarea>
         </div>
       </div>
-      <p id="fErr" class="text-sm text-red-500 hidden font-medium">المرجو ملء جميع الحقول: الاسم، الهاتف، المدينة والعنوان.</p>
-      <button onclick="sendOrder()" class="btn w-full bg-[#111827] text-white font-bold py-3.5 text-base hover:bg-[#1F2937] rounded-xl flex items-center justify-center gap-2">
+      <p id="fErr" class="err hidden">المرجو ملء جميع الحقول: الاسم، الهاتف، المدينة والعنوان.</p>
+      <button onclick="sendOrder()" class="btn btn-solid btn-lg w-full">
         <span id="waIc"></span> تأكيد الطلب عبر واتساب
       </button>
-      <p class="text-xs text-gray-400 text-center">معلوماتك آمنة. التوصيل مجاني والدفع عند الاستلام.</p>
+      <p style="font-size:12px;color:var(--muted);text-align:center">معلوماتك آمنة. التوصيل مجاني والدفع عند الاستلام.</p>
     </div>
   </div>
 </div>
 
+<!-- TOAST -->
+<div id="toast" style="position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:14px;padding:12px 20px;border-radius:var(--r-sm);z-index:70;display:none;font-weight:500;white-space:nowrap" role="status"></div>
 
-<div id="toast" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-sm px-5 py-3 rounded-xl shadow-xl z-50 hidden font-medium"></div>
 
 <script>
-const WHATSAPP = "212600000000"; 
+const WHATSAPP = "212600000000";
 const WATCH_PRICE = 199, WATCH_PAIR = 349;
+const PROOF = {rating:'', count:''};
+
 const PACKS = [
   {id:'p1', name:'مجموعة 9PM', sub:'عطرين متناغمين، 10 مل لكل منهما', items:['Rebel 10 مل','Night Out 10 مل'], fixed:179, folder:'pack-parfums-1',
    imgs:['Pack9PM.jpeg','Pack9-PM.jpeg']},
@@ -647,9 +818,9 @@ const PERFUMES = [
   {id:'fakhar',name:'Fakhar',brand:'Lattafa'},{id:'kingdom',name:'The Kingdom',brand:'Luxury'},
   {id:'asad',name:'Asad',brand:'Lattafa'},{id:'fantasme',name:'Jean Lowe Fantasme',brand:'Maison Alhambra'},
   {id:'azure',name:'Jean Lowe Azure',brand:'Maison Alhambra'},{id:'turquoise',name:'Voux Turquoise',brand:'Emir'}
-]; 
+];
 const WATCHES = [1,2,3,4,5,6,7].map(n=>({id:'w'+n, name:'ساعة كلاسيك '+n, img:`images/watch/watch-${n}.jpeg`}));
-const BADGES = {w1:'الأكثر طلباً', w2:'جديد', w3:'حصري'}; 
+const BADGES = {w1:'الأكثر طلباً', w2:'جديد', w3:'حصري'};
 const FAQ = [
   ['كيف تتم عملية التوصيل؟','التوصيل مجاني بالكامل لجميع مدن وقرى المغرب، بغض النظر عن قيمة طلبك.'],
   ['ما هي طرق الدفع المتاحة؟','نوفر الدفع نقداً عند الاستلام لضمان راحتك وأمانك. تدفع لمندوب التوصيل عند استلام طلبك فقط.'],
@@ -657,24 +828,46 @@ const FAQ = [
   ['كيف يعمل عرض الساعات؟','سعر الساعة الواحدة هو 199 درهم. إذا اخترت ساعتين (من أي موديل تفضله)، سيكون السعر الإجمالي 349 درهم فقط عوض 398 درهم.'],
   ['هل يمكنني اختيار العطور في الباقات؟','بالتأكيد. في باقات 3 إلى 8 عطور، تختار عدد القوارير أولاً، ثم تقوم بانتقاء كل عطر تفضله من قائمتنا المميزة.']
 ];
+const TRUST = [
+  ['cash','الدفع عند الاستلام','لا تدفع إلا بعد استلام طلبك'],
+  ['truck','توصيل مجاني','لجميع مدن المغرب'],
+  ['shield','جودة مضمونة','وخدمة عملاء متميزة'],
+  ['chat','دعم عبر واتساب','تأكيد الطلب فوراً']
+];
+const STEPS = [
+  ['الاختيار','تصفح مجموعتنا وأضف الساعات أو العطور التي تعجبك إلى سلة التسوق.'],
+  ['التأكيد','أدخل اسمك، رقم هاتفك، مدينتك وعنوانك. سيتم إرسال طلبك عبر واتساب لتأكيده.'],
+  ['الاستلام','يصلك طلبك أينما كنت في المغرب مجاناً، وتدفع نقداً عند الاستلام بكل أمان.']
+];
+const PACK_MIN = Math.min(...PACKS.map(p=>p.fixed||Math.min(...Object.values(p.prices))));
+
 const IC={
-  trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/>', menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+  trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/>',
+  menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
   truck:'<path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-3"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
   cash:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/>',
   chat:'<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.3L3 20l1.3-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
   check:'<path d="M20 6 9 17l-5-5"/>',
-  plus:'<path d="M12 5v14M5 12h14"/>', minus:'<path d="M5 12h14"/>', x:'<path d="M18 6 6 18M6 6l12 12"/>',
-  back:'<path d="M5 12h14M13 6l6 6-6 6"/>', shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  minus:'<path d="M5 12h14"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  back:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>',
   bag:'<path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/>'
 };
-const ic=(n,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
-const sel = {}, picks = {}; PACKS.forEach(p=>{ if(p.prices){ sel[p.id]=Object.keys(p.prices)[0]; picks[p.id]=[]; } });
-let cart = [], pv = null;
+const ic=(n,s=20,w=1.75)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
 
+const sel={}, picks={};
+PACKS.forEach(p=>{ if(p.prices){ sel[p.id]=Object.keys(p.prices)[0]; picks[p.id]=[]; } });
+let cart=[], pv=null;
+</script>
+
+<script>
 function imgErr(el){
   const d=document.createElement('div');
-  d.className=el.className.replace('object-cover','')+' bg-line text-muted text-xs p-2 flex items-center justify-center text-center break-all overflow-hidden border border-line rounded-md';
-  d.textContent='عذراً، الصورة غير متوفرة';
+  d.className='bg-mist text-muted text-xs p-2 flex items-center justify-center text-center break-all overflow-hidden';
+  d.style.cssText='width:100%;height:100%;position:absolute;inset:0';
+  d.textContent='الصورة غير متوفرة';
   if(el.id) d.id=el.id;
   el.replaceWith(d);
 }
@@ -685,14 +878,16 @@ function optsHtml(p,fn='pick'){
   const home=fn==='pick';
   return optsBase(p,fn)+(p.fixed?'':perfHtml(p,home?'tog':'pvTog'))+(home?packCta(p):'');
 }
-const stepChip=n=>`<span class="grid place-items-center w-6 h-6 rounded-full bg-accent text-white text-xs font-bold shadow-sm">${n}</span>`;
 
 function perfHtml(p,fn){
   const n=+sel[p.id], cur=picks[p.id], k=cur.length, ok=k===n, full=k>=n;
-  return `<div class="mt-8 mb-3 flex items-center justify-between gap-3"><p class="text-sm font-bold flex items-center gap-2 text-brand">${stepChip(2)}اختر ${n} عطور</p><p class="text-sm font-bold ${ok?'text-accent':'text-muted'}">${k} / ${n}</p></div>
-  <div class="h-1.5 bg-line rounded-full overflow-hidden mb-4"><div class="bar h-full bg-brand" style="width:${k/n*100}%"></div></div>
-  ${ok?`<p class="mb-5 bg-[#FFFFFF] border border-accent/20 text-brandtext text-sm font-bold px-4 py-2.5 rounded-md flex items-center gap-2">${ic('check',16)} اكتمل الاختيار بنجاح</p>`:`<p class="mb-5 text-sm text-muted">تم اختيار ${k}، متبقي ${n-k}</p>`}
-  <div class="perf-grid grid grid-cols-2 gap-3">${PERFUMES.map(f=>{const i=cur.indexOf(f.id),on=i>-1;return `<button onclick="${fn}('${p.id}','${f.id}')" aria-pressed="${on}" class="btn flex items-center gap-3 text-start border p-3 rounded-lg transition-all ${on?'border-accent bg-[#FFFFFF] shadow-sm':'border-line bg-paper hover:border-brand'} ${full&&!on?'opacity-50 grayscale':''}"><span class="grid place-items-center shrink-0 w-6 h-6 rounded-full text-xs font-bold transition-colors ${on?'bg-accent text-white':'border border-line text-muted'}">${on?i+1:''}</span><span class="min-w-0"><span class="block text-sm font-bold leading-tight text-ink">${f.name}</span>${f.brand?`<span class="block text-xs text-muted mt-0.5">${f.brand}</span>`:''}</span></button>`}).join('')}</div>`;
+  return `<div style="margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <p class="step"><span class="step-n">2</span>اختر ${n} عطور</p>
+    <p style="font-size:14px;font-weight:600;color:${ok?'var(--ink)':'var(--muted)'}">${k} / ${n}</p>
+  </div>
+  <div class="prog" style="margin-top:12px"><i style="width:${k/n*100}%"></i></div>
+  <p style="margin-top:10px;margin-bottom:16px;font-size:14px;color:${ok?'var(--ink)':'var(--muted)'};font-weight:${ok?600:400};display:flex;align-items:center;gap:6px">${ok?ic('check',15,2)+' اكتمل الاختيار':`تم اختيار ${k}، متبقي ${n-k}`}</p>
+  <div class="perf-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">${PERFUMES.map(f=>{const i=cur.indexOf(f.id),on=i>-1;return `<button onclick="${fn}('${p.id}','${f.id}')" aria-pressed="${on}" class="pf ${full&&!on?'dim':''}"><span class="pf-n">${on?i+1:''}</span><span style="min-width:0"><span style="display:block;font-size:14px;font-weight:600;line-height:1.3">${f.name}</span>${f.brand?`<span style="display:block;font-size:12px;margin-top:2px;opacity:.65">${f.brand}</span>`:''}</span></button>`}).join('')}</div>`;
 }
 
 function togSel(id,fid){
@@ -715,93 +910,169 @@ function packLabel(p){
 }
 
 function optsBase(p,fn){
-  if(p.fixed) return `<div class="flex flex-wrap gap-2 mt-6">${p.items.map(i=>`<span class="border border-line bg-paper text-ink font-medium px-4 py-2 text-sm rounded-md shadow-sm">${i}</span>`).join('')}</div>`;
-  return `<p class="text-sm font-bold mt-6 mb-3 flex items-center gap-2 text-brand">${stepChip(1)}حدد حجم الباقة</p>
-    <div class="flex flex-wrap gap-3">${Object.keys(p.prices).map(n=>`<button onclick="${fn}('${p.id}','${n}')" class="btn flex-1 min-w-[5.5rem] px-3 py-3.5 text-sm font-bold border rounded-lg transition-all ${sel[p.id]===n?'bg-brand text-white border-brand shadow-md':'border-line bg-paper text-ink hover:border-brand'}" aria-pressed="${sel[p.id]===n}">${n} عطور<span class="block text-xs font-normal mt-1 ${sel[p.id]===n?'text-white/80':'text-muted'}">${p.prices[n]} درهم</span></button>`).join('')}</div>`;
+  if(p.fixed) return `<ul style="margin-top:24px;border-top:1px solid var(--line);list-style:none;padding:0;margin-bottom:0">${p.items.map(i=>`<li style="padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;font-weight:500">${ic('check',15,2)}${i}</li>`).join('')}</ul>`;
+  return `<p class="step" style="margin-top:32px;margin-bottom:12px"><span class="step-n">1</span>حدد حجم الباقة</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${Object.keys(p.prices).map(n=>`<button onclick="${fn}('${p.id}','${n}')" class="opt" aria-pressed="${sel[p.id]===n}"><span style="display:block;font-size:15px;font-weight:600">${n} عطور</span><span style="display:block;font-size:13px;opacity:.7">${p.prices[n]} درهم</span></button>`).join('')}</div>`;
 }
 
 const packPrice=p=>p.fixed||p.prices[sel[p.id]];
 
 function packCta(p){
   const left=p.fixed?0:+sel[p.id]-picks[p.id].length, ready=left===0;
-  return `<div class="mt-8 pt-6 border-t border-line">
-    <div class="flex items-end justify-between gap-4 mb-5">
+  return `<div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--line)">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px">
       <div>
-        <p class="text-sm text-muted mb-1 font-medium">سعر الباقة الإجمالي</p>
-        <p class="font-display text-4xl text-brand leading-none">${dh(packPrice(p))}</p>
+        <p style="font-size:13px;color:var(--muted)">سعر الباقة</p>
+        <p style="font-size:32px;font-weight:600;line-height:1;margin-top:4px">${dh(packPrice(p))}</p>
       </div>
-      <button onclick="go('pack','${p.id}')" class="btn text-sm font-medium underline underline-offset-4 text-muted hover:text-accent pb-1">تفاصيل أكثر</button>
+      <button onclick="go('pack','${p.id}')" class="btn-text" style="font-size:13px">تفاصيل الباقة</button>
     </div>
-    <button onclick="addPack('${p.id}')" class="btn w-full font-bold py-4 text-lg rounded-md shadow-sm transition-all flex items-center justify-center gap-2 ${ready?'bg-accent text-white hover:bg-[#b8952b]':'bg-line text-muted cursor-not-allowed'}">${ready?`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>أضف الباقة للسلة`:`متبقي اختيار ${left} عطور`}</button>
-    <p class="text-xs text-muted text-center mt-3 font-medium">التوصيل مجاني · الدفع عند الاستلام</p></div>`;
+    <button onclick="addPack('${p.id}')" class="btn btn-solid btn-lg w-full" ${ready?'':'aria-disabled="true"'}>${ready?ic('bag',18)+' أضف الباقة للسلة':`متبقي اختيار ${left} عطور`}</button>
+    <p style="font-size:13px;color:var(--muted);text-align:center;margin-top:12px">توصيل مجاني والدفع عند الاستلام</p>
+  </div>`;
 }
 
 function renderPacks(){
-  document.getElementById('packGrid').innerHTML = PACKS.map(p=>`
-    <article class="pk-card grid md:grid-cols-2 gap-8 md:gap-14 items-start bg-white p-5 md:p-10 rounded-2xl border border-line shadow-lux">
-      <div class="md:sticky md:top-28">
-        <div class="zoom overflow-hidden bg-white cursor-pointer rounded-xl border border-line" onclick="go('pack','${p.id}')">
-          <img id="main-${p.id}" src="${src(p.folder,p.imgs[0])}" alt="${p.name}" class="pk-main w-full aspect-[4/5] object-cover" onerror="imgErr(this)">
+  document.getElementById('packGrid').innerHTML = PACKS.map((p,idx)=>`
+    <article class="pk" style="display:grid;gap:32px" class="md:grid-cols-2">
+      <div style="display:grid;gap:32px" class="md:grid-cols-2 items-start">
+        <div style="min-width:0" class="${idx%2?'md:order-2':''}">
+          <div class="pk-pair">
+            <div class="pk-media" onclick="go('pack','${p.id}')">
+              <img id="main-${p.id}" src="${src(p.folder,p.imgs[0])}" alt="${p.name}" class="pk-img" onerror="imgErr(this)">
+            </div>
+            ${p.imgs[1]?`<div class="pk-media pk-media2" onclick="go('pack','${p.id}')"><img src="${src(p.folder,p.imgs[1])}" alt="${p.name}" class="pk-img" onerror="imgErr(this)"></div>`:''}
+          </div>
+          ${p.imgs.length>1?`<div style="display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:4px" class="scrollbar-hide">
+            ${p.imgs.map((im,k)=>`<img src="${src(p.folder,im)}" alt="صورة ${k+1}" onclick="setMain('${p.id}',${k},this)" class="thumb ${k?'':'on'}" onerror="imgErr(this)">`).join('')}
+          </div>`:''}
         </div>
-        ${p.imgs.length>1?`<div class="pk-thumbs flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide">
-          ${p.imgs.map((im,k)=>`<img src="${src(p.folder,im)}" alt="صورة ${k+1}" onclick="setMain('${p.id}',${k},this)" class="thumb ${k?'':'on'} w-16 h-16 object-cover cursor-pointer shrink-0 bg-white" onerror="imgErr(this)">`).join('')}
-        </div>`:''}
-      </div>
-      <div>
-        ${p.fixed?'<span class="inline-block text-xs font-bold px-3 py-1 rounded-md border border-accent text-brandtext mb-3">مجموعة حصرية</span>':''}
-        <h3 class="font-display text-3xl md:text-4xl text-brand">${p.name}</h3>
-        <p class="text-muted mt-3 text-lg">${p.sub}</p>
-        <div id="opts-${p.id}">${optsHtml(p)}</div>
+        <div style="min-width:0">
+          <p style="font-size:13px;font-weight:600;color:var(--brass-d);margin-bottom:12px">باقة العطور</p>
+          <h3 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:600;line-height:1.2;letter-spacing:-0.01em">${p.name}</h3>
+          <p style="color:var(--muted);margin-top:8px;font-size:15px">${p.sub}</p>
+          ${p.fixed?'<p style="margin-top:16px"><span class="badge">مجموعة حصرية</span></p>':''}
+          <div id="opts-${p.id}">${optsHtml(p)}</div>
+        </div>
       </div>
     </article>`).join('');
 }
 
 function pick(id,n){
-  sel[id]=n; picks[id]=picks[id].slice(0,+n); const p=PACKS.find(x=>x.id===id);
-  document.getElementById('opts-'+id).innerHTML=optsHtml(p);
+  sel[id]=n; picks[id]=picks[id].slice(0,+n);
+  document.getElementById('opts-'+id).innerHTML=optsHtml(PACKS.find(x=>x.id===id));
 }
 
 function setMain(id,k,el){
-  const p=PACKS.find(x=>x.id===id), m=document.getElementById('main-'+id); m.src=src(p.folder,p.imgs[k]);
-  el.parentElement.querySelectorAll('.thumb').forEach(t=>t.classList.remove('on')); el.classList.add('on');
+  const p=PACKS.find(x=>x.id===id), m=document.getElementById('main-'+id);
+  m.src=src(p.folder,p.imgs[k]);
+  el.parentElement.querySelectorAll('.thumb').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
 }
 
-let WISH=new Set(); try{WISH=new Set(JSON.parse(localStorage.getItem('wish'))||[])}catch(e){}
+let WISH=new Set();
+try{WISH=new Set(JSON.parse(localStorage.getItem('wish'))||[])}catch(e){}
 function toggleWish(id,btn){
   WISH.has(id)?WISH.delete(id):WISH.add(id);
   try{localStorage.setItem('wish',JSON.stringify([...WISH]))}catch(e){}
-  btn.classList.toggle('on',WISH.has(id)); btn.setAttribute('aria-pressed',WISH.has(id));
+  btn.classList.toggle('on',WISH.has(id));
+  btn.setAttribute('aria-pressed',WISH.has(id));
   toast(WISH.has(id)?'أضيف إلى المفضلة':'أزيل من المفضلة');
 }
-const EYE='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
-const HEART='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
-function renderWatches(){
-  document.getElementById('watchGrid').innerHTML = WATCHES.map(w=>`
-    <article class="wc group">
-      <div class="wc-media" onclick="go('watch','${w.id}')">
-        <img src="${w.img}" alt="${w.name}" loading="lazy" class="wc-img" onerror="imgErr(this)">
-        ${BADGES[w.id]?`<span class="wc-badge">${BADGES[w.id]}</span>`:''}
-        <div class="wc-actions" onclick="event.stopPropagation()">
-          <button class="wc-icon" onclick="go('watch','${w.id}')" aria-label="عرض ${w.name}">${EYE}</button>
-          <button class="wc-icon wc-heart ${WISH.has(w.id)?'on':''}" onclick="toggleWish('${w.id}',this)" aria-pressed="${WISH.has(w.id)}" aria-label="إضافة ${w.name} إلى المفضلة">${HEART}</button>
-        </div>
+const HEART='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>';
+</script>
+
+<script>
+let _hIdx=0,_hTimer=null;
+function _hGo(n){
+  const total=4;
+  _hIdx=(n+total)%total;
+  const tr=document.getElementById('hTrack');
+  if(tr) tr.style.transform='translateX('+(_hIdx*100)+'%)';
+  document.querySelectorAll('.hero-dot').forEach(function(d,i){d.classList.toggle('on',i===_hIdx);});
+  clearTimeout(_hTimer);_hTimer=setTimeout(function(){_hGo(_hIdx+1);},4500);
+}
+function dialSvg(){
+  let t='';
+  for(let i=0;i<60;i++){const a=i*Math.PI/30,l=i%5?3:7,r2=54-l;
+    t+=`<line x1="${(60+54*Math.sin(a)).toFixed(2)}" y1="${(60-54*Math.cos(a)).toFixed(2)}" x2="${(60+r2*Math.sin(a)).toFixed(2)}" y2="${(60-r2*Math.cos(a)).toFixed(2)}" stroke="#5177AE" stroke-width="${i%5?1:1.6}" opacity="${i%5?.55:1}"/>`}
+  return `<svg class="dial" viewBox="0 0 120 120" role="img" aria-label="ساعتين بـ ${WATCH_PAIR} درهم">${t}<g class="dial-dot"><circle cx="60" cy="3.5" r="2.6" fill="#5177AE"/></g><text x="60" y="40" text-anchor="middle" font-size="9.5" fill="#6B6B6B">ساعتين بـ</text><text x="60" y="68" text-anchor="middle" font-size="27" font-weight="700" fill="#2B2B2B">${WATCH_PAIR}</text><text x="60" y="84" text-anchor="middle" font-size="10" fill="#5177AE">درهم</text></svg>`;
+}
+function renderHero(){
+  const imgs=["images/hero-image/hero-1.jpg","images/hero-image/hero-2.jpg","images/hero-image/hero-3.jpg","images/hero-image/hero-4.jpg"];
+  const slides=imgs.map(function(src,i){
+    return '<div class="hero-slide"><img src="'+src+'" alt="hero '+(i+1)+'" '+(i===0?'fetchpriority="high"':'loading="lazy"')+' style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>';
+  }).join('');
+  const dots=imgs.map(function(_,i){
+    return '<button class="hero-dot'+(i===0?' on':'')+'" onclick="_hGo('+i+')" aria-label="slide '+(i+1)+'"></button>';
+  }).join('');
+  document.getElementById('hero').innerHTML=`
+  <div class="hero-wrap">
+    <div id="hTrack" class="hero-track" style="transform:translateX(0)">${slides}</div>
+    <button class="hero-arrow hero-arrow-prev" onclick="_hGo(_hIdx-1)" aria-label="السابق">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="hero-arrow hero-arrow-next" onclick="_hGo(_hIdx+1)" aria-label="التالي">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div class="hero-content">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+        <span class="badge">${ic('cash',13)} الدفع عند الاستلام</span>
+        <span class="badge">${ic('truck',13)} توصيل مجاني</span>
       </div>
-      <div class="wc-body">
-        <h3 class="wc-title" onclick="go('watch','${w.id}')">${w.name}</h3>
-        <p class="wc-sub">توصيل مجاني · الدفع عند الاستلام</p>
-        <p class="wc-price"><b>${dh(WATCH_PRICE)}</b></p>
-        <p class="wc-pair">ساعتين بـ ${WATCH_PAIR} درهم <s>${WATCH_PRICE*2}</s></p>
-        <button onclick="addWatch('${w.id}')" class="wc-btn" aria-label="إضافة ${w.name} للسلة">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
-          أضف إلى السلة
-        </button>
+      <h1 style="font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:700;line-height:1.25">الأناقة فمعصمك،<br>والعطر فجيبك.</h1>
+      <p style="color:var(--muted);margin-top:12px;font-size:15px;max-width:38ch;line-height:1.7">ساعات كلاسيكية من ${WATCH_PRICE} درهم، وباكات عطور من ${PACK_MIN} درهم.</p>
+      <div style="margin-top:28px;display:flex;align-items:center;gap:20px">${dialSvg()}<div><p style="font-size:2rem;font-weight:700;line-height:1">${dh(WATCH_PRICE)}</p><p style="font-size:14px;margin-top:6px;color:var(--muted)">للساعة الواحدة</p><p style="font-size:14px;margin-top:6px;font-weight:600;color:var(--brass)">وفّر ${WATCH_PRICE*2-WATCH_PAIR} درهم مع عرض الساعتين</p></div></div>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+        <button onclick="go('watch','w1')" class="btn btn-solid btn-lg" style="width:100%">${ic('bag',17)} تسوق الآن</button>
+        <a href="#packs" class="btn btn-line btn-lg" style="width:100%;text-decoration:none">تصفح باكات العطور ${ic('back',17)}</a>
+      </div>
+      <div style="margin-top:20px;display:flex;align-items:center;justify-content:space-between">
+        <div class="hero-dots">${dots}</div>
+        <span style="font-size:12px;color:var(--muted)">${imgs.length} صور</span>
+      </div>
+    </div>
+  </div>`;
+  _hTimer=setTimeout(function(){_hGo(1);},4500);
+}
+
+function renderWatches(){
+  const cards = WATCHES.map(w=>`
+    <article class="watch-card">
+      <div class="watch-card-media" onclick="go('watch','${w.id}')">
+        <img src="${w.img}" alt="${w.name}" loading="lazy" class="watch-card-img" onerror="imgErr(this)">
+        ${BADGES[w.id]?`<span class="watch-card-badge">${BADGES[w.id]}</span>`:''}
+        <button class="quick-add" onclick="event.stopPropagation();addWatch('${w.id}')" aria-label="إضافة ${w.name} للسلة">${ic('plus',20,2)}</button>
+        <button class="heart ${WISH.has(w.id)?'on':''}" onclick="event.stopPropagation();toggleWish('${w.id}',this)" aria-pressed="${WISH.has(w.id)}" aria-label="إضافة ${w.name} إلى المفضلة">${HEART}</button>
+      </div>
+      <div class="watch-card-body">
+        <a href="#/watch/${w.id}" class="watch-card-name">${w.name}</a>
+        <p class="watch-card-price">${dh(WATCH_PRICE)}</p>
+        <p class="watch-card-pair">ساعتين بـ ${WATCH_PAIR} درهم <s>${WATCH_PRICE*2}</s></p>
+        <button onclick="addWatch('${w.id}')" class="btn btn-ghost btn-sm watch-card-cta" aria-label="إضافة ${w.name} للسلة">أضف إلى السلة</button>
       </div>
     </article>`).join('');
+
+  const offerCard=`<aside class="offer-card">
+    <div class="offer-imgs">${WATCHES.slice(0,2).map(w=>`<div class="offer-img" onclick="go('watch','${w.id}')"><img src="${w.img}" alt="${w.name}" loading="lazy" onerror="imgErr(this)"></div>`).join('<span class="offer-plus" aria-hidden="true">'+ic('plus',18,2.2)+'</span>')}</div>
+    <div>
+      <p style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;opacity:.5;margin-bottom:12px">عرض خاص</p>
+      <h3 style="font-size:1.75rem;font-weight:600;line-height:1.2;letter-spacing:-0.01em">ساعتين بـ ${WATCH_PAIR} درهم</h3>
+      <p style="opacity:.65;margin-top:8px;font-size:15px">عوض <s>${WATCH_PRICE*2}</s> درهم. اختر أي موديلين من التشكيلة.</p>
+    </div>
+    <div>
+      <div class="prog on-dark"><i id="offerProg" style="width:0%"></i></div>
+      <p id="offerBar" style="font-size:14px;font-weight:500;margin-top:12px;opacity:.8"></p>
+    </div>
+  </aside>`;
+
+  document.getElementById('watchGrid').innerHTML = cards + offerCard;
 }
 
 function add(item){
   const f=cart.find(c=>c.key===item.key); f?f.qty++:cart.push({...item,qty:1});
-  save(); renderCart(); toast('تمت الإضافة إلى السلة بنجاح'); track('AddToCart',{content_name:item.name,value:item.price,currency:'MAD'});
+  save(); renderCart(); toast('تمت الإضافة إلى السلة بنجاح');
+  track('AddToCart',{content_name:item.name,value:item.price,currency:'MAD'});
 }
 function addPack(id){
   const p=PACKS.find(x=>x.id===id), img=src(p.folder,p.imgs[0]);
@@ -827,48 +1098,53 @@ function renderCart(){
   document.getElementById('cartTotal').textContent=dh(t.total);
   document.getElementById('mCount').textContent=t.count;
   document.getElementById('mTotal').textContent=dh(t.total);
-  
-  const mb=document.getElementById('mbar'); const showM=!!t.count&&!pv; 
-  mb.classList.toggle('hidden',!showM); mb.classList.toggle('flex',showM);
-  
+  const mb=document.getElementById('mbar');
+  const showM=!!t.count&&!pv;
+  mb.style.display=showM?'block':'none';
   const odd=t.wq%2===1;
-  const cartNote = document.getElementById('cartNote');
-  if (t.saved > 0 && !odd) {
-    cartNote.innerHTML = `<span class="flex items-center justify-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent"><path d="M20 6L9 17l-5-5"/></svg> تم تطبيق العرض: وفرت ${t.saved} درهم</span>`;
-    cartNote.className = "px-6 py-3 bg-[#FFFFFF] border-b border-accent/20 text-brandtext text-sm font-bold shrink-0 text-center";
-  } else if (odd) {
-    cartNote.innerHTML = "أضف ساعة أخرى واحصل عليهما بـ 349 درهم فقط";
-    cartNote.className = "px-6 py-3 bg-tint border-b border-line text-brand text-sm font-medium shrink-0 text-center";
+  const cartNote=document.getElementById('cartNote');
+  if(t.saved>0&&!odd){
+    cartNote.innerHTML=`<span style="display:inline-flex;align-items:center;gap:6px;font-weight:600">${ic('check',15,2)} تم تطبيق العرض: وفرت ${t.saved} درهم</span>`;
+    cartNote.style.background='var(--mist)';
+  } else if(odd){
+    cartNote.innerHTML='أضف ساعة أخرى واحصل عليهما بـ 349 درهم فقط';
+    cartNote.style.fontWeight='500';
   } else {
-    cartNote.innerHTML = "التوصيل مجاني بالكامل لجميع الطلبات";
-    cartNote.className = "px-6 py-3 bg-paper border-b border-line text-muted text-sm font-medium shrink-0 text-center";
+    cartNote.innerHTML='التوصيل مجاني بالكامل لجميع الطلبات';
+    cartNote.style.color='var(--muted)';
   }
-
   const ob=document.getElementById('offerBar'), op=document.getElementById('offerProg');
-  ob.innerHTML=odd?`<span>عرض الساعتين</span> <span class="text-xs bg-brand text-white px-2 py-0.5 rounded font-normal">أضف 1 بـ 150 د.م</span>`:(t.wq>0?`<span class="flex items-center gap-1">${ic('check',16)} العرض مطبق</span> <span>وفرت ${t.saved} د.م</span>`:'<span>عرض الساعات</span> <span class="text-xs bg-brand text-white px-2 py-0.5 rounded font-normal">2 بـ 349 د.م</span>');
-  op.style.width=(t.wq===0?0:odd?50:100)+'%';
-  if(t.wq>0 && !odd) op.classList.replace('bg-brand','bg-accent'); else op.classList.replace('bg-accent','bg-brand');
+  if(ob) ob.innerHTML=odd?`أضف ساعة أخرى بـ ${WATCH_PAIR-WATCH_PRICE} درهم فقط`:(t.wq>0?`<span style="display:inline-flex;align-items:center;gap:6px">${ic('check',15,2)} العرض مطبق، وفرت ${t.saved} درهم</span>`:'أضف ساعتين إلى السلة لتطبيق العرض');
+  if(op) op.style.width=(t.wq===0?0:odd?50:100)+'%';
 
   document.getElementById('cartItems').innerHTML=cart.length?cart.map(c=>`
-    <div class="flex gap-4 bg-paper border border-line p-4 rounded-xl shadow-sm">
-      <div class="w-20 h-24 shrink-0 rounded-lg border border-line bg-tint overflow-hidden p-1">
-        <img src="${c.img||''}" alt="" class="w-full h-full object-cover mix-blend-multiply rounded-md" onerror="this.style.visibility='hidden'">
+    <div style="display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)">
+      <div style="width:76px;height:88px;flex-shrink:0;border-radius:var(--r-sm);background:var(--mist);overflow:hidden">
+        <img src="${c.img||''}" alt="" style="width:100%;height:100%;${c.type==='watch'?'object-fit:contain;padding:6px;mix-blend-mode:multiply':'object-fit:cover'}" onerror="this.style.visibility='hidden'">
       </div>
-      <div class="flex-1 min-w-0 flex flex-col">
-        <div class="flex items-start justify-between gap-2">
-          <div class="min-w-0"><p class="font-display text-lg leading-tight text-brand">${c.name}</p>${c.label?`<p class="text-xs text-muted mt-1 leading-relaxed">${c.label}</p>`:''}</div>
-          <button onclick="del('${c.key}')" class="w-8 h-8 -mt-1 -me-1 grid place-items-center text-muted hover:text-red-500 hover:bg-red-50 rounded-md transition-colors shrink-0" aria-label="حذف">${ic('trash',16)}</button>
-        </div>
-        <div class="flex items-center justify-between mt-auto pt-3">
-          <div class="flex items-center border border-line rounded-md overflow-hidden bg-tint">
-            <button onclick="chg('${c.key}',-1)" class="w-9 h-9 grid place-items-center hover:bg-line text-ink" aria-label="إنقاص">${ic('minus',14)}</button>
-            <span class="w-8 text-center text-sm font-bold text-brand">${c.qty}</span>
-            <button onclick="chg('${c.key}',1)" class="w-9 h-9 grid place-items-center hover:bg-line text-ink" aria-label="زيادة">${ic('plus',14)}</button>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+          <div style="min-width:0">
+            <p style="font-weight:600;line-height:1.4">${c.name}</p>
+            ${c.label?`<p style="font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5">${c.label}</p>`:''}
           </div>
-          <p class="font-bold text-brand text-lg">${dh(c.price)}</p>
+          <button onclick="del('${c.key}')" style="width:40px;height:40px;display:grid;place-items:center;color:var(--muted);background:none;border:0;cursor:pointer;flex-shrink:0;margin-top:-4px;margin-right:-8px" aria-label="حذف">${ic('trash',17)}</button>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px">
+          <div style="display:flex;align-items:center;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden">
+            <button onclick="chg('${c.key}',-1)" style="width:40px;height:40px;display:grid;place-items:center;background:none;border:0;cursor:pointer" aria-label="إنقاص">${ic('minus',13,2)}</button>
+            <span style="width:28px;text-align:center;font-size:14px;font-weight:600">${c.qty}</span>
+            <button onclick="chg('${c.key}',1)" style="width:40px;height:40px;display:grid;place-items:center;background:none;border:0;cursor:pointer" aria-label="زيادة">${ic('plus',13,2)}</button>
+          </div>
+          <p style="font-weight:600">${dh(c.price)}</p>
         </div>
       </div>
-    </div>`).join(''):`<div class="text-center py-20"><div class="w-20 h-20 mx-auto bg-tint rounded-full flex items-center justify-center text-muted border border-line mb-5">${ic('bag',32)}</div><p class="font-display text-2xl text-brand">سلة المشتريات فارغة</p><p class="text-muted text-sm mt-2 max-w-[200px] mx-auto">لم تقم بإضافة أي منتجات إلى سلتك بعد.</p><button onclick="toggleCart(false)" class="btn inline-block mt-8 bg-brand text-white px-8 py-3.5 text-sm font-bold rounded-md shadow-md hover:bg-ink">متابعة التسوق</button></div>`;
+    </div>`).join(''):`<div style="text-align:center;padding:80px 0">
+      <div style="display:flex;justify-content:center;color:var(--muted)">${ic('bag',36,1.4)}</div>
+      <p style="font-size:18px;font-weight:600;margin-top:16px">سلة المشتريات فارغة</p>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px">لم تقم بإضافة أي منتجات بعد.</p>
+      <button onclick="toggleCart(false)" class="btn btn-solid" style="margin-top:24px">متابعة التسوق</button>
+    </div>`;
 }
 
 function del(key){ cart=cart.filter(x=>x.key!==key); save(); renderCart(); }
@@ -877,41 +1153,36 @@ function load(){try{cart=JSON.parse(localStorage.getItem('cart'))||[]}catch(e){c
 
 function toggleCart(open){
   if(open) track('InitiateCheckout',{value:totals().total,currency:'MAD'});
-  const drawer = document.getElementById('drawer');
-  const overlay = document.getElementById('overlay');
-  
-  if (open) {
-    overlay.classList.remove('hidden');
-    // small delay to allow display block to apply before opacity transition
-    setTimeout(() => {
-      overlay.classList.add('opacity-100');
-      drawer.classList.remove('-translate-x-full');
-    }, 10);
+  const drawer=document.getElementById('drawer');
+  const overlay=document.getElementById('overlay');
+  if(open){
+    overlay.style.display='block';
+    setTimeout(()=>{ overlay.style.opacity='1'; drawer.style.transform='translateX(0)'; },10);
   } else {
-    drawer.classList.add('-translate-x-full');
-    overlay.classList.remove('opacity-100');
-    setTimeout(() => overlay.classList.add('hidden'), 300); // match transition duration
+    drawer.style.transform='translateX(-100%)';
+    overlay.style.opacity='0';
+    setTimeout(()=>{ overlay.style.display='none'; },300);
   }
 }
 
 function toast(m){
-  const t=document.getElementById('toast'); t.textContent=m; t.classList.remove('hidden');
-  clearTimeout(window._t); window._t=setTimeout(()=>t.classList.add('hidden'),2500);
+  const t=document.getElementById('toast'); t.textContent=m; t.style.display='block';
+  clearTimeout(window._t); window._t=setTimeout(()=>t.style.display='none',2500);
 }
 
 function openCheckout(){
   if(!cart.length){toast('سلة المشتريات فارغة');return}
   const t=totals();
-  document.getElementById('ckSummary').innerHTML=cart.map(c=>`<div class="flex justify-between gap-3"><span>${c.name}${c.label?' ('+c.label+')':''}</span><b>× ${c.qty}</b></div>`).join('');
+  document.getElementById('ckSummary').innerHTML=cart.map(c=>`<div style="display:flex;justify-content:space-between;gap:12px"><span>${c.name}${c.label?' ('+c.label+')':''}</span><b>× ${c.qty}</b></div>`).join('');
   document.getElementById('ckTotal').textContent=dh(t.total);
   document.getElementById('fErr').classList.add('hidden');
   toggleCart(false);
-  const m=document.getElementById('ckModal'); m.classList.remove('hidden'); m.classList.add('flex');
-  document.body.style.overflow='hidden';
+  const m=document.getElementById('ckModal');
+  m.style.display='flex'; document.body.style.overflow='hidden';
 }
 function closeCheckout(){
-  const m=document.getElementById('ckModal'); m.classList.add('hidden'); m.classList.remove('flex');
-  document.body.style.overflow='';
+  const m=document.getElementById('ckModal');
+  m.style.display='none'; document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCheckout()});
 
@@ -926,7 +1197,9 @@ function sendOrder(){
   track(CONVERSION_EVENT,{value:t.total,currency:'MAD'});
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
 }
+</script>
 
+<script>
 const go=(type,id)=>{location.hash=`#/${type}/${id}`};
 
 function route(){
@@ -934,7 +1207,8 @@ function route(){
   const home=document.getElementById('home'), view=document.getElementById('productView');
   const item=m&&(m[1]==='watch'?WATCHES:PACKS).find(x=>x.id===m[2]);
   if(!item){
-    pv=null; home.classList.remove('hidden'); view.classList.add('hidden'); document.title='دار الوقت — ساعات وعطور فاخرة'; renderCart();
+    pv=null; home.classList.remove('hidden'); view.classList.add('hidden');
+    document.title='دار الوقت — ساعات وعطور فاخرة'; renderCart();
     if(location.hash.length>1&&!m) setTimeout(()=>{const e=document.querySelector(location.hash); e&&e.scrollIntoView()},0);
     return;
   }
@@ -962,90 +1236,80 @@ function pvLines(){
 function renderProduct(){
   let name,sub,urls,opts,offer='';
   if(pv.type==='watch'){
-    const w=WATCHES.find(x=>x.id===pv.id); name=w.name; sub='ساعة كلاسيكية أنيقة، تصلك إلى باب منزلك مع خدمة التوصيل المجاني.'; urls=[w.img];
-    offer=`<div class="mt-4 inline-flex items-center gap-2 bg-[#FFFFFF] border border-accent/20 px-4 py-2 rounded-md"><span class="text-accent">${ic('check',18)}</span><p class="text-brand text-sm font-bold">عرض خاص: ساعتين بـ ${dh(WATCH_PAIR)} عوض <s class="text-muted font-normal">398 د.م</s></p></div>`;
-    opts=`<div class="bg-paper border border-line p-5 rounded-xl shadow-sm mb-6">
-      <p class="text-sm font-bold mb-4 text-brand">اختر العرض المناسب</p>
-      <div class="grid grid-cols-2 gap-3">${[1,2].map(q=>`<button onclick="pvQty(${q})" aria-pressed="${pv.qty===q}" class="btn text-start border-2 p-4 rounded-lg transition-all ${pv.qty===q?'border-brand bg-paper shadow-md':'border-line bg-tint text-muted hover:border-brand/50'}"><div class="flex justify-between items-start"><b class="font-bold block text-ink">${q===1?'ساعة واحدة':'ساعتين'}</b>${q===2&&pv.qty!==2?`<span class="text-[10px] bg-accent text-white px-1.5 py-0.5 rounded">وفر 49 د.م</span>`:''}</div><span class="text-xl ${pv.qty===q?'text-brand':'text-muted'} font-bold mt-2 block">${q===1?WATCH_PRICE:WATCH_PAIR} درهم</span></button>`).join('')}</div>
-      ${pv.qty===2?`<div class="mt-5 pt-5 border-t border-line"><label class="block text-sm font-bold mb-2 text-brand" for="pv2">اختر الساعة الثانية</label><select id="pv2" onchange="pv.second=this.value" class="w-full bg-tint px-4 py-3.5 text-base font-medium text-ink shadow-sm cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231E293B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:left_1rem_center] bg-[length:12px_12px]">${WATCHES.map(x=>`<option value="${x.id}" ${x.id===pv.second?'selected':''}>${x.name}</option>`).join('')}</select></div>`:''}
+    const w=WATCHES.find(x=>x.id===pv.id);
+    name=w.name; sub='ساعة كلاسيكية أنيقة، تصلك إلى باب منزلك مع خدمة التوصيل المجاني.'; urls=[w.img];
+    offer=`<div style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;font-size:14px;font-weight:500">${ic('check',15,2)} عرض خاص: ساعتين بـ ${dh(WATCH_PAIR)} عوض <s style="color:var(--muted);font-weight:400">398 د.م</s></div>`;
+    opts=`<div style="margin-top:32px">
+      <p class="step" style="margin-bottom:12px">اختر العرض المناسب</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${[1,2].map(q=>`<button onclick="pvQty(${q})" aria-pressed="${pv.qty===q}" class="opt" style="text-align:start;padding:16px"><b style="display:block;font-weight:600">${q===1?'ساعة واحدة':'ساعتين'}</b><span style="display:block;font-size:14px;margin-top:4px;opacity:.75">${q===1?WATCH_PRICE:WATCH_PAIR} درهم${q===2?' · وفر 49':''}</span></button>`).join('')}</div>
+      ${pv.qty===2?`<div style="margin-top:16px"><label class="lbl" for="pv2">اختر الساعة الثانية</label><select id="pv2" onchange="pv.second=this.value" class="field select">${WATCHES.map(x=>`<option value="${x.id}" ${x.id===pv.second?'selected':''}>${x.name}</option>`).join('')}</select></div>`:''}
     </div>`;
-  }else{
-    const p=PACKS.find(x=>x.id===pv.id); name=p.name; sub=p.sub; urls=p.imgs.map(i=>src(p.folder,i)); 
-    opts=`<div class="bg-paper border border-line p-5 md:p-8 rounded-xl shadow-sm mb-6">${optsHtml(p,'pvPick')}</div>`;
+  } else {
+    const p=PACKS.find(x=>x.id===pv.id);
+    name=p.name; sub=p.sub; urls=p.imgs.map(i=>src(p.folder,i));
+    opts=`<div>${optsHtml(p,'pvPick')}</div>`;
   }
   const cur=pv.cur||urls[0];
-  
+  const kind=pv.type==='watch'?'contain':'cover';
+
   document.getElementById('productView').innerHTML=`
-  <div class="bg-tint border-b border-line pb-8 md:pb-12">
-    <div class="max-w-7xl mx-auto px-5 pt-6">
-      <button onclick="history.back()" class="inline-flex items-center gap-2 text-sm font-bold text-muted hover:text-brand py-2 transition-colors">${ic('back',18)} رجوع للمتجر</button>
-      <div class="mt-6 grid md:grid-cols-12 gap-8 md:gap-16">
-        <div class="md:col-span-5 md:sticky md:top-28 self-start">
-          <div class="bg-paper border border-line rounded-2xl p-2 shadow-sm">
-            <img id="pvMain" src="${cur}" alt="${name}" class="w-full aspect-[4/5] object-cover rounded-xl mix-blend-multiply bg-tint" onerror="imgErr(this)">
-          </div>
-          ${urls.length>1?`<div class="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide px-1">${urls.map(u=>`<img src="${u}" alt="" onclick="pvSet(this)" class="thumb ${u===cur?'on':''} w-20 h-20 object-cover cursor-pointer shrink-0 bg-paper border border-line shadow-sm rounded-lg p-1 mix-blend-multiply" onerror="imgErr(this)">`).join('')}</div>`:''}
+  <div class="container" style="padding-top:24px;padding-bottom:80px">
+    <button onclick="history.back()" class="btn-text" style="margin-bottom:24px">${ic('back',17)} رجوع للمتجر</button>
+    <div style="display:grid;gap:40px;align-items:start" class="md:grid-cols-12">
+      <div class="md:col-span-6" style="position:sticky;top:88px;min-width:0">
+        <div class="pv-media">
+          <img id="pvMain" src="${cur}" alt="${name}" class="pv-img ${kind}" onerror="imgErr(this)">
         </div>
-        <div class="md:col-span-7 py-2">
-          <span class="text-accent font-bold text-sm tracking-wider uppercase mb-2 block">دار الوقت حصرياً</span>
-          <h1 class="font-display text-4xl md:text-5xl leading-tight text-brand">${name}</h1>
-          <p class="text-muted mt-3 text-lg">${sub}</p>
-          <div class="my-6 pt-6 border-t border-line flex items-baseline gap-3">
-            <p class="font-display text-4xl text-brand">${dh(pvTotal())}</p>
-            ${pv.type==='watch'&&pv.qty===1?`<s class="text-lg text-muted">299 درهم</s>`:''}
-          </div>
-          ${offer}
-          
-          <div class="mt-8 mb-10 bg-paper border border-line rounded-xl p-5 shadow-sm">
-            <ul class="flex flex-col gap-3 text-sm font-medium text-ink">
-              <li class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-tint flex items-center justify-center text-brand shrink-0">${ic('cash',16)}</span>الدفع نقداً عند استلام طلبك</li>
-              <li class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-tint flex items-center justify-center text-brand shrink-0">${ic('truck',16)}</span>توصيل مجاني وسريع لجميع مدن المغرب</li>
-              <li class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-tint flex items-center justify-center text-brand shrink-0">${ic('shield',16)}</span>جودة مضمونة وخدمة عملاء متميزة</li>
-            </ul>
-          </div>
-          
-          ${opts}
-          
-          <div id="orderForm" class="bg-paper border border-line p-6 md:p-8 rounded-xl shadow-lux">
-            <p class="font-display text-2xl text-brand mb-6 flex items-center gap-2">${ic('bag',24)} إتمام الطلب السريع</p>
-            <div class="space-y-4">
+        ${urls.length>1?`<div style="display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:4px" class="scrollbar-hide">${urls.map(u=>`<img src="${u}" alt="" onclick="pvSet(this)" class="thumb ${u===cur?'on':''}" onerror="imgErr(this)">`).join('')}</div>`:''}
+      </div>
+      <div class="md:col-span-6" style="min-width:0">
+        <p style="font-size:13px;font-weight:600;color:var(--brass-d);margin-bottom:12px">${pv.type==='watch'?'ساعة كلاسيكية':'باقة عطور'}</p>
+        <h1 style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:600;line-height:1.2;letter-spacing:-0.02em">${name}</h1>
+        <p style="color:var(--muted);margin-top:10px;max-width:46ch;font-size:15px;line-height:1.7">${sub}</p>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:12px">
+          <p style="font-size:2.25rem;font-weight:600;line-height:1;letter-spacing:-0.02em">${dh(pvTotal())}</p>
+          ${pv.type==='watch'&&pv.qty===1?`<s style="font-size:16px;color:var(--muted)">299 درهم</s>`:''}
+        </div>
+        ${offer}
+        <ul style="margin-top:24px;border-top:1px solid var(--line);list-style:none;padding:0">
+          <li style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px">${ic('cash',19)} الدفع نقداً عند استلام طلبك</li>
+          <li style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px">${ic('truck',19)} توصيل مجاني وسريع لجميع مدن المغرب</li>
+          <li style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px">${ic('shield',19)} جودة مضمونة وخدمة عملاء متميزة</li>
+        </ul>
+        ${opts}
+        <div id="orderForm" style="margin-top:32px;border:1px solid var(--line);border-radius:var(--r);padding:24px">
+          <p style="font-size:18px;font-weight:600;margin-bottom:20px">إتمام الطلب السريع</p>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div>
+              <label class="lbl" for="pvName">الاسم الكامل</label>
+              <input id="pvName" value="${pv.f.name}" oninput="pv.f.name=this.value" placeholder="أدخل اسمك الكامل" autocomplete="name" class="field">
+            </div>
+            <div class="f2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
               <div>
-                <label class="block text-sm font-bold text-brand mb-1.5" for="pvName">الاسم الكامل</label>
-                <input id="pvName" value="${pv.f.name}" oninput="pv.f.name=this.value" placeholder="أدخل اسمك الكامل" autocomplete="name" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow">
-              </div>
-              <div class="f2 grid grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-sm font-bold text-brand mb-1.5" for="pvCity">المدينة</label>
-                  <input id="pvCity" value="${pv.f.city}" oninput="pv.f.city=this.value" placeholder="مدينتك" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow">
-                </div>
-                <div>
-                  <label class="block text-sm font-bold text-brand mb-1.5" for="pvPhone">رقم الهاتف</label>
-                  <input id="pvPhone" type="tel" value="${pv.f.phone}" oninput="pv.f.phone=this.value" placeholder="06..." autocomplete="tel" class="w-full bg-tint px-4 py-3.5 text-base transition-shadow" dir="ltr" style="text-align: right;">
-                </div>
+                <label class="lbl" for="pvCity">المدينة</label>
+                <input id="pvCity" value="${pv.f.city}" oninput="pv.f.city=this.value" placeholder="مدينتك" class="field">
               </div>
               <div>
-                <label class="block text-sm font-bold text-brand mb-1.5" for="pvAddress">العنوان</label>
-                <textarea id="pvAddress" rows="2" oninput="pv.f.address=this.value" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="w-full bg-tint px-4 py-3.5 text-base resize-none">${pv.f.address}</textarea>
+                <label class="lbl" for="pvPhone">رقم الهاتف</label>
+                <input id="pvPhone" type="tel" value="${pv.f.phone}" oninput="pv.f.phone=this.value" placeholder="06..." autocomplete="tel" class="field" dir="ltr" style="text-align:right">
               </div>
             </div>
-            
-            <p id="pvErr" class="text-sm text-red-500 mt-3 hidden font-medium">المرجو ملء جميع الحقول المطلوبة.</p>
-            
-            <div class="mt-6 flex flex-col gap-3">
-              <button onclick="orderNow()" class="btn w-full bg-brand text-white font-bold py-4 text-lg hover:bg-ink rounded-md shadow-md flex items-center justify-center gap-2">
-                ${ic('chat',22)} اطلب الآن عبر واتساب
-              </button>
-              <button onclick="addProductToCart()" class="btn w-full border-2 border-line bg-paper text-ink font-bold py-3.5 text-base hover:border-brand hover:text-brand rounded-md flex items-center justify-center gap-2">
-                ${ic('plus',18)} إضافة إلى السلة
-              </button>
+            <div>
+              <label class="lbl" for="pvAddress">العنوان</label>
+              <textarea id="pvAddress" rows="2" oninput="pv.f.address=this.value" placeholder="الحي، الشارع، رقم المنزل..." autocomplete="street-address" class="field" style="resize:none">${pv.f.address}</textarea>
             </div>
+          </div>
+          <p id="pvErr" class="err hidden" style="margin-top:16px">المرجو ملء جميع الحقول المطلوبة.</p>
+          <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+            <button onclick="orderNow()" class="btn btn-solid btn-lg w-full">${ic('chat',19)} اطلب الآن عبر واتساب</button>
+            <button onclick="addProductToCart()" class="btn btn-line btn-lg w-full">${ic('plus',17)} إضافة إلى السلة</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-paper border-t border-line p-3 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-    <button onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'})" class="w-full bg-brand text-white font-bold py-3.5 text-lg rounded-md shadow-md">اطلب الآن — ${dh(pvTotal())}</button>
+  <div id="pvBar" class="md:hidden" style="position:fixed;bottom:0;left:0;right:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:12px 16px">
+    <button onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'})" class="btn btn-solid btn-lg w-full">اطلب الآن — ${dh(pvTotal())}</button>
   </div>`;
 }
 
@@ -1055,7 +1319,7 @@ function pvSet(el){pv.cur=el.getAttribute('src');document.getElementById('pvMain
 
 function addProductToCart(){
   if(pv.type==='watch'){
-    addWatch(pv.id); 
+    addWatch(pv.id);
     if(pv.qty===2) addWatch(pv.second);
   } else {
     if(pv.type==='pack'&&!packReady(PACKS.find(x=>x.id===pv.id))) return;
@@ -1065,7 +1329,7 @@ function addProductToCart(){
 
 function orderNow(){
   if(pv.type==='pack'&&!packReady(PACKS.find(x=>x.id===pv.id))) return;
-  const {name,city,phone,address}=pv.f,err=document.getElementById('pvErr');
+  const {name,city,phone,address}=pv.f, err=document.getElementById('pvErr');
   if(!name.trim()||!city.trim()||!phone.trim()||!address.trim()){err.classList.remove('hidden');return}
   err.classList.add('hidden');
   const total=pvTotal();
@@ -1076,46 +1340,49 @@ function orderNow(){
 
 function toggleMenu(force){
   const m=document.getElementById('mnav'), open=force===undefined?m.classList.contains('hidden'):force;
-  m.classList.toggle('hidden',!open); menuBtn.innerHTML=ic(open?'x':'menu',22); menuBtn.setAttribute('aria-expanded',open);
-}
-
-function initHero(){
-  const root=document.getElementById('heroSlider'), sl=[...root.querySelectorAll('.hslide')], dots=document.getElementById('hDots');
-  let cur=0, timer=null, x0=null;
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  dots.innerHTML=sl.map((_,i)=>`<button class="hdot ${i?'':'on'}" aria-label="صورة ${i+1}" data-i="${i}"></button>`).join('');
-  hPrev.innerHTML=ic('back',20); hNext.innerHTML=ic('back',20); hNext.firstChild.style.transform='scaleX(-1)';
-  
-  const show=i=>{
-    cur=(i+sl.length)%sl.length;
-    sl.forEach((s,k)=>{
-      s.classList.toggle('is-on',k===cur); 
-      s.setAttribute('aria-hidden',k!==cur);
-    });
-    [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
-  };
-  const play=()=>{ if(reduce)return; stop(); timer=setInterval(()=>show(cur+1),6000); };
-  const stop=()=>{ clearInterval(timer); };
-  
-  hNext.onclick=()=>{show(cur+1);play();}; hPrev.onclick=()=>{show(cur-1);play();};
-  dots.onclick=e=>{const b=e.target.closest('[data-i]'); if(b){show(+b.dataset.i);play();}};
-  
-  root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',play);
-  root.addEventListener('focusin',stop); root.addEventListener('focusout',play);
-  root.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;stop();},{passive:true});
-  root.addEventListener('touchend',e=>{ if(x0===null)return; const dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) show(cur+(dx<0?1:-1)); x0=null; play(); });
-  document.addEventListener('visibilitychange',()=>document.hidden?stop():play());
-  play();
+  m.classList.toggle('hidden',!open);
+  menuBtn.innerHTML=ic(open?'x':'menu',22);
+  menuBtn.setAttribute('aria-expanded',open);
 }
 
 function initStatic(){
   menuBtn.innerHTML=ic('menu',22);
-  closeBtn.innerHTML=ic('x',20); waIc.innerHTML=ic('chat',20);
-  faqList.innerHTML=FAQ.map(([q,a])=>`<details class="border-b border-line group"><summary class="flex items-center justify-between gap-4 py-6 font-bold text-lg text-brand cursor-pointer hover:text-accent transition-colors">${q}<span class="chev text-accent shrink-0 w-8 h-8 rounded-full bg-tint flex items-center justify-center group-hover:bg-accent/10 transition-colors">${ic('plus',20)}</span></summary><p class="pb-6 text-muted text-base leading-relaxed max-w-2xl pr-4 border-r-2 border-accent/30 mr-2">${a}</p></details>`).join('');
+  closeBtn.innerHTML=ic('x',19);
+  ckClose.innerHTML=ic('x',19);
+  waIc.innerHTML=ic('chat',19);
+
+  trustBar.innerHTML=TRUST.map(([i,t,d])=>`
+    <div class="trust-item">
+      <div class="trust-item-icon">${ic(i,20,1.6)}</div>
+      <div>
+        <p class="trust-item-title">${t}</p>
+        <p class="trust-item-sub">${d}</p>
+      </div>
+    </div>`).join('');
+
+  steps.innerHTML=STEPS.map(([t,d],idx)=>`
+    <li class="tl-item">
+      <div class="tl-left">
+        <div class="tl-dot">${ic(['bag','chat','truck'][idx],22,1.8)}</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-body">
+        <h3 class="tl-title">${t}</h3>
+        <p class="tl-desc">${d}</p>
+      </div>
+    </li>`).join('');
+
+  faqList.innerHTML=FAQ.map(([q,a])=>`
+    <details class="faq-item">
+      <summary>${q}<span class="chev">${ic('plus',18)}</span></summary>
+      <p>${a}</p>
+    </details>`).join('');
 }
 
+document.querySelectorAll('.marq-g').forEach(g=>g.querySelectorAll('span').forEach((sp,i)=>sp.insertAdjacentHTML('afterbegin',ic(['truck','cash','chat'][i]||'check',16,1.8))));
+document.querySelectorAll('.foot ul li').forEach((li,i)=>li.insertAdjacentHTML('afterbegin',ic(['truck','shield','chat'][i]||'check',17,1.8)));
 window.addEventListener('hashchange',route);
-initStatic(); initHero(); load(); renderPacks(); renderWatches(); renderCart(); route();
+initStatic(); load(); renderHero(); renderPacks(); renderWatches(); renderCart(); route();
 </script>
 </body>
 </html>
